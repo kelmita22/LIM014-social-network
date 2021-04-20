@@ -1,0 +1,96 @@
+/* propiedades universales, le indicamos al navegador que maantenga el ancho y alto sin
+ importar el relleno y la fuente para la interfaz*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+}
+/* al cuerpo le damos el 100% de altura a la ventana que se muestre y creamos columnas 
+con grid  */
+body {
+  min-height: 100vh;
+  width: 110%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+/* medidas del banner */
+.logoDestokp img {
+  width: 90%;
+  max-width: 90%;
+  margin-left: 20%;
+}
+/* medidas generales del div contenedor del login */
+.loginContainer {
+  max-width: 450px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* diseño registro de cuenta */
+.loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* diseño textos login */
+.userPass {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #4e4187;
+}
+/* medidas inputs */
+.form-input {
+  width: 100%;
+  position: relative;
+  margin-bottom: 24px;
+}
+/* diseño inputs y botón */
+input,
+button {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.1em;
+}
+/* color y medidas inputs */
+input {
+  width: 100%;
+  background: #e6e6e6;
+  color: #333;
+  padding: 14px 64px;
+}
+/* diseño botón login */
+.btnLogin {
+  color: #fff;
+  padding: 14px 64px;
+  margin: 20px auto;
+  font-weight: bold;
+  background: #e67ea8;
+}
+/* ubicación y medidas logos facebook, gmail */
+.enlaces {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+/* color texto de registrate*/
+.registrate {
+  color: #333;
+}
+/* ---- @media queries   ----  */
+@media (max-width: 780px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logoDestokp {
+    display: none;
+  }
+}

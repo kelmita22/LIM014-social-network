@@ -1,12 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./images/logo.ico">
+    <title>Wartay</title>
 </head>
 <body>
-  <script type="module" src="main.js"></script>
+    <!-- Banner profesora diseño destokp -->
+    <section class="logoDestokp">
+        <img src="./images/prof.jpeg" alt="logoDestokp">
+    </section>
+    <!-- Login -->
+    <section>
+        <div class="loginContainer">
+         <!-- Logo -->   
+          <section><img src="./images/logoWartay.png" class="imgLogo" alt="Logo Wartay" width="150">
+          </section>
+          <!-- Texto inicio --> 
+          <p class="userPass">!Iniciar sesión en Wartay!
+          </p>
+          <!-- Inputs de ingreso --> 
+            <form class="loginForm">
+                <label class="form-input">
+                    <input type="text" placeholder="Email">
+                </label>
+                <label class="form-input">
+                    <input type="password" placeholder="Contraseña">
+                </label>
+                <!-- Botón Login -->
+                <button class="btnLogin">Login
+                </button>
+                <!-- Ingreso con Facebook o Gmail -->
+                <p class= "userPass">o bien ingresa con...
+                </p>
+                <section class="enlaces">
+                  <a href="#"><img src="./images/f.png" alt="Facebook" width="25">
+                  </a>
+                  <a href="#"><img src="./images/g.png" alt="Gmail" width="22">
+                  </a>   
+                </section>
+                <!-- Registro de cuenta -->
+                <p class="userPass">¿No tienes cuenta?<a class="registrate" href="#">Registrate
+                </a></p>
+            </form>
+        </div>
+    </section>
+    
 </body>
 </html>
