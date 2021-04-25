@@ -8,5 +8,6 @@ export default () => {
     appId: '1:324582871493:web:18dac299050699817d3bac',
     measurementId: 'G-RT0YE0YE3D',
   };
+
   firebase.initializeApp(config);
 };
