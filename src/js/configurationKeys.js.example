@@ -1,0 +1,13 @@
+export default () => {
+  const config = {
+    apiKey: 'xsjnodsncubsihcv',
+    authDomain: 'sajbfieqvbcivsail',
+    projectId: 'sxkjwqsbckuvdi',
+    storageBucket: 'zbisvcisvc',
+    messagingSenderId: 'xcbsiovcish',
+    appId: 'scsvbcikvasck',
+    measurementId: 'xsabcovasciv',
+  };
+
+  firebase.initializeApp(config);
+};
