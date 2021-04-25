@@ -1,5 +1,5 @@
+import auth from '../js/authFirebase.js';
 import { components } from '../view/index.js';
-import auth from '../lib/authFirebase.js';
 
 const changeView = (route) => {
   const container = document.getElementById('container');
@@ -31,10 +31,11 @@ const changeView = (route) => {
       });
       document
         .getElementById('btnFacebook')
-        .addEventListener('click', () => console.log('Facebook'));
+        .addEventListener('click', () => auth.loginFacebook());
+
       return document
         .getElementById('btnGmail')
-        .addEventListener('click', () => console.log('Gmail'));
+        .addEventListener('click', () => auth.loginGoogle());
     }
     case '#/registrate': {
       container.appendChild(components.check());

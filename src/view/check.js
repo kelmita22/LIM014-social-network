@@ -21,12 +21,19 @@ export default () => {
    <label>Email:</label>
    <input class="controls" id="email" type="email" placeholder="Ingrese su Correo" required>
    <label>Eres un profesor, estudiante ó padre de familia:</label>
-   <input class="controls" type="text" placeholder="Ejem.Prof. de matemáticas" required>
+   <select class="controls" name="Orden" >
+  <option value="" disabled selected>Ejem.Prof, estudiante, padre</option>
+  <option value="az">Profesor</option>
+  <option value="za">Profesora</option>
+  <option value="za">Padre</option>
+  <option value="za">Madre</option>
+  <option value="za">Estudiante</option>
+  </select>
    <label>Crea tu contraseña:</label>
    <input class="controls" id="password" type="password" placeholder="Ingrese su Contraseña" required>
    <label>Confirma tu contraseña:</label>
    <input class="controls" type="password" placeholder="Confirme Contraseña" required>
-    <a id="btnLoginTwo" href="#/">Crear cuenta</a>
+    <a id="btnLoginTwo" >Crear cuenta</a>
  </section>
 </div>
 </section>`;
