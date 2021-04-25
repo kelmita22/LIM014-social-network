@@ -1,12 +1,12 @@
 export default () => {
   const config = {
-    apiKey: 'AIzaSyAcCbGOY03CxGlFIMfJ4mpsRNJA5dPvEx4',
-    authDomain: 'social-network-c6d8d.firebaseapp.com',
-    projectId: 'social-network-c6d8d',
-    storageBucket: 'social-network-c6d8d.appspot.com',
-    messagingSenderId: '645138349404',
-    appId: '1:645138349404:web:91bb6ec3079e2ac2841599',
-    measurementId: 'G-40HCD75QB2',
+    apiKey: 'AIzaSyAx03IvI8hKW20-SdP_YorRdLAJm_RVtOc',
+    authDomain: 'wartay-de3d8.firebaseapp.com',
+    projectId: 'wartay-de3d8',
+    storageBucket: 'wartay-de3d8.appspot.com',
+    messagingSenderId: '324582871493',
+    appId: '1:324582871493:web:18dac299050699817d3bac',
+    measurementId: 'G-RT0YE0YE3D',
   };
   firebase.initializeApp(config);
 };
