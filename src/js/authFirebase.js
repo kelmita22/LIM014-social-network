@@ -1,4 +1,4 @@
-function singUp(email, password) {
+function signUp(email, password) {
   return new Promise((resolve, reject) => {
     firebase
       .auth()
@@ -11,8 +11,17 @@ function singUp(email, password) {
       });
   });
 }
+// verificacion de correo
+function emailVerification() {
+  const user = firebase.auth().currentUser;
+  user.sendEmailVerification().then(() => {
+    console.log('enviamos correo');
+  }).catch((error) => {
+    console.log(error);
+  });
+}
 
-function singIn(email, password) {
+function signIn(email, password) {
   return new Promise((resolve, reject) => {
     firebase
       .auth()
@@ -21,7 +30,7 @@ function singIn(email, password) {
         resolve(result.user);
       })
       .catch((error) => {
-        reject(error.message);
+        reject(error);
       });
   });
 }
@@ -40,9 +49,9 @@ function loginGoogle() {
       .catch((error) => {
         console.error(error);
       });
-  } else {
+  } /* else {
     firebase.auth().singOut();
-  }
+  } */
 }
 // Función para entrar por facebook
 function loginFacebook() {
@@ -62,10 +71,22 @@ function loginFacebook() {
     firebase.auth().singOut();
   }
 }
+// funcion para cerrar sesion
+/*
+function signOut() {
+  if (confirm('¿Realmente deseas cerrar sesión?')) {
+    firebase.auth().signOut()
+      .then(() => {
+        window.location.hash = '';
+      }).catch((error) => {
+      });
+  }
+} */
 
 export default {
-  singUp,
-  singIn,
+  signUp,
+  signIn,
   loginGoogle,
   loginFacebook,
+  emailVerification,
 };

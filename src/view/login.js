@@ -20,9 +20,11 @@ export default () => {
       <label class="form-input">
         <input id="userEmail" type="text" placeholder="Email" />
       </label>
+      <p class="col-12 error" id="emailerror"></p>
       <label class="form-input">
         <input id="userPassword" type="password" placeholder="Contraseña" />
       </label>
+      <p class="col-12 error" id="passerror"></p>
       <!-- Botón Login -->
       <a id="btnLogin">Login</a>
       <!-- Ingreso con Facebook o Gmail -->
