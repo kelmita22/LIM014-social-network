@@ -10,9 +10,12 @@
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly",
-    "firebase": "readonly"
+    "firebase": "readonly",
+    "mockdatabase": "readonly"
   },
-  "plugins": ["jest"],
+  "plugins": [
+    "jest"
+  ],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -27,6 +30,7 @@
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
-    "no-console":"off"
+    "no-console": "off",
+    "no-alert": "off"
   }
 }

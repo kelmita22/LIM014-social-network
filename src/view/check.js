@@ -39,6 +39,7 @@ export default () => {
    <input class="controls"  id= "password-confirm" type="password" placeholder="Confirme Contraseña" required>
    <p class="col-12 error" id="pass-error"></p>
     <a id="btnLoginTwo" >Crear cuenta</a>
+    <p class="col-12 error" id="signup-error"></p>
  </section>
 </div>
 </section>`;

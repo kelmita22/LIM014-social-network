@@ -11,7 +11,7 @@ export const validateUser = (userEmail, userPass) => {
     !validateEmail(userEmail)
     || userEmail === ''
     || userPass === ''
-    || userPass.length < 6
+    || userPass < 6
   ) {
     return false;
   }
@@ -28,7 +28,7 @@ export const validateNewUser = (
     !validateEmail(newUserEmail)
     || newUserEmail === ''
     || newUserPass === ''
-    || newUserPass.length < 6
+    || newUserPass < 6
     || newUserName === ''
     || newUserLastName === ''
   ) {

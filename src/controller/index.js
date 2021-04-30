@@ -6,6 +6,30 @@ import {
   validateEmail,
 } from '../js/validation.js';
 
+// función callback para loguearse con facebook
+const facebook = () => {
+  auth.loginFacebook()
+    .then((result) => {
+      console.log(result.user.displayName);
+      window.location.hash = '#/home';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
+// función callback para loguearse con google
+const google = () => {
+  auth.loginGoogle()
+    .then((result) => {
+      console.log(result.user.displayName);
+      window.location.hash = '#/home';
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+
 const changeView = (route) => {
   const container = document.getElementById('container');
   container.innerHTML = '';
@@ -35,8 +59,8 @@ const changeView = (route) => {
           } else {
             passerror.style.display = 'none';
             passerror.innerHTML = '';
-            auth.signIn(email, password).then((user) => {
-              console.log('USER: ', user);
+            auth.signIn(email, password).then(() => {
+              window.location.hash = '#/home';
             }).catch((error) => {
               switch (error.code) {
                 case 'auth/wrong-password':
@@ -55,13 +79,14 @@ const changeView = (route) => {
           }
         }
       });
+
       document
         .getElementById('btnFacebook')
-        .addEventListener('click', () => auth.loginFacebook());
+        .addEventListener('click', facebook);
 
       return document
         .getElementById('btnGmail')
-        .addEventListener('click', () => auth.loginGoogle());
+        .addEventListener('click', google);
     }
     case '#/registrate': {
       container.appendChild(components.check());
@@ -122,31 +147,29 @@ const changeView = (route) => {
           }
           if (validationOk) {
             // proceso de registro
-            auth
-              .signUp(newUserEmail, newUserPass)
-              .then((user) => {
-                console.log(user);
-                const uid = user.uid;
-                if (user.email === newUserEmail) {
-                  const userData = {
-                    email: newUserEmail,
-                    firstnames: newUserName,
-                    lastnames: newUserLastName,
-                  };
-                  users
-                    .add(uid, userData)
-                    .then((result) => {
-                      console.log(result);
-                      window.location.hash = '#/';
-                    }).catch((error) => {
-                      console.log('Error: ', error);
-                    });
-                } else {
-                  console.log('No se registro');
-                }
-              })
-              .catch((error) => {
-                console.log('Error: ', error);
+            auth.signUp(newUserEmail, newUserPass).then((result) => {
+              console.log(result.user);
+              const uid = result.user.uid;
+              if (result.user.email === newUserEmail) {
+                const userData = {
+                  email: newUserEmail,
+                  firstnames: newUserName,
+                  lastnames: newUserLastName,
+                };
+                users
+                  .add(uid, userData)
+                  .then(() => {
+                    alert('Se registro exitosamente');
+                    window.location.hash = '#/';
+                  }).catch((error) => {
+                    console.log(error);
+                  });
+              } else {
+                alert('No se registro');
+              }
+            })
+              .catch(() => {
+                alert('La dirección de correo electrónico ya está siendo utilizada por otra cuenta');
               });
           }
         });
@@ -165,5 +188,4 @@ const changeView = (route) => {
   }
   return 0;
 };
-
 export { changeView };

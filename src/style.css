@@ -1,6 +1,6 @@
 /* propiedades universales, le indicamos al navegador que maantenga el ancho y alto sin
  importar el relleno y la fuente para la interfaz*/
-* {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -47,6 +47,18 @@ body {
   display: flex;
   flex-direction: column;
 }
+#userEmail:focus {
+  border: solid 2px #3b99f7;
+}
+#userPassword:focus {
+  border: solid 2px #3b99f7;
+}
+#userEmail:hover {
+  border: solid 2px #3b99f7;
+}
+#userPassword:hover {
+  border: solid 2px #3b99f7;
+}
 /* diseño textos login */
 .userPass {
   font-size: 0.8em;
@@ -85,6 +97,9 @@ input {
   background: #e67ea8;
   border-radius: 10px;
 }
+#btnLogin:hover {
+  background-color: #3b99f7;
+}
 /* ubicación y medidas logos facebook, gmail */
 .links {
   display: flex;
@@ -92,9 +107,18 @@ input {
   align-items: center;
   margin-bottom: 15px;
 }
+#btnFacebook:hover {
+  background-color: #3b99f7;
+}
+#btnGmail:hover {
+  background-color: #3b99f7;
+}
 /* color texto de registrate*/
 .checkIn {
   color: #333;
+}
+.checkIn:hover {
+  color: #3b99f7;
 }
 .formRegister {
   width: 400px;
@@ -103,8 +127,11 @@ input {
   padding: 30px;
   margin-top: 10px;
 }
-
-.formRegister h4 {
+.col-12error{
+  color: red;
+  margin-bottom: 2%;
+}
+h4 {
   color: #4e4187;
   text-align: center;
   font-size: 1.5em;
@@ -127,17 +154,13 @@ label {
   border: 1px solid rgb(136, 120, 120);
   font-size: 12px;
 }
-
-.formRegister .botons {
-  width: 50%;
-  margin-left: 28%;
-  background: #e67ea8;
-  border: none;
-  border-radius: 10px;
-  padding: 12px;
-  color: white;
-  font-size: 16px;
+.controls:focus {
+  border: solid 2px #3b99f7;
 }
+.controls:hover {
+  border: solid 2px #3b99f7;
+}
+
 #btnLoginTwo {
   color: #fff;
   padding: 11px 63px;
@@ -147,23 +170,42 @@ label {
   border-radius: 10px;
   padding-top: 2%;
 }
+#btnLoginTwo:hover {
+  background-color: #3b99f7;
+}
 header {
   background-color: #3b99f7;
 }
+.imgClose {
+  width: 38px;
+}
 .navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .navigation ul {
   display: flex;
-  margin-top: 19px;
-  margin-bottom: 19px;
+  align-items: center;
+  margin-right: 2%;
 }
 .navigation ul a {
   text-decoration: none;
-  margin-top: 10px;
   color: white;
-  margin-left: 10px;
+}
+.content .btns a {
+  display: inline-block;
+  margin: 0 10px;
+  text-decoration: none;
+  border: 2px solid #69a6ce;
+  color: #ee8176;
+  font-weight: bold;
+  padding: 10px 25px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+.navigation ul a:hover {
+  color: #333;
 }
 .nameUser {
   display: flex;
@@ -174,22 +216,22 @@ header {
 }
 .logoDestok {
   display: flex;
-  margin-left: 39%;
-  margin-right: 24%;
+  align-items: center;
+  margin-left: 13%;
 }
 .logoDestok p {
-  margin-top: 16%;
-  margin-left: 10%;
+  margin-left: 7%;
   font-size: xx-large;
   color: white;
 }
 .imgBurger {
   display: none;
 }
-.imgClose {
-  width: 17%;
-}
+
 .profile {
+  grid-column-start: 1;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
   width: 400px;
   height: 330px;
   background: #fff;
@@ -197,6 +239,7 @@ header {
   margin-left: 10%;
   box-shadow: 0px 1px 10px 1px #000;
   overflow: hidden;
+  /* float: right; */
 }
 .container {
   height: 200px;
@@ -225,33 +268,38 @@ header {
   padding-left: 180px;
   text-align: center;
 }
-.lower-container h3,
+h3,
 h4 {
   font-weight: bold;
   color: #4e4187;
 }
 .username {
+  /*display: flex; */
   grid-column-start: 2;
-  padding: 18px 56px 35px 41px;
+  padding: 18px 33px 38px 25px;
   border-style: groove;
   margin-top: 2%;
-  margin-bottom: 14%;
+  margin-bottom: 28%;
   margin-right: 2%;
   border-radius: 20px;
 }
 #mypara {
-  width: 627px;
+  /*display: flex; */
+  padding: 0;
+  /* width: 471px; */
   height: 79px;
   border-radius: 20px;
 }
 .post {
+  /*display: flex; */
+  /* justify-content: space-between; */
+  /* margin-top: 22%; */
   display: flex;
-  justify-content: space-between;
-  margin-top: 3%;
+  align-items: flex-end;
 }
 .imgbttn {
-  margin-right: 84%;
-  width: 6%;
+  margin-right: 71%;
+  width: 10%;
 }
 #postmypost {
   color: #fff;
@@ -260,13 +308,21 @@ h4 {
   background: #e67ea8;
   border-radius: 10px;
 }
+#postmypost:hover {
+  background: #3b99f7;
+}
 .mainpost {
+  grid-column-start: 2;
   background-color: #ffffff;
   border: 1px solid #b7b7b7;
   border-radius: 4px;
   padding: 0;
   box-shadow: 4px 1.5px 5px #999999;
-  margin-bottom: 0;
+  margin-right: 3%;
+  display: flex;
+  flex-flow: column;
+  /* padding-bottom: 50%; */
+  margin-top: -16%;
 }
 .mainpost .publish {
   padding-left: 8px;
@@ -289,60 +345,16 @@ h4 {
 }
 .likedislike .like {
   font-size: 11px;
-  font-family: Verdana;
   color: #999;
 }
 #user {
   color: white;
 }
 .main {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 50% 50%;
 }
-/* ---- @media queries   ----  */
-@media (min-width: 320px) and (max-width: 768px) {
-  body {
-    max-width: 100%;
-  }
-  .checkPage {
-    display: flex;
-    justify-content: center;
-  }
-  .homePage {
-    display: flex;
-    justify-content: center;
-  }
-  .loginContainer {
-    padding: 0% 0% 0% 0%;
-  }
-  #logoCheck {
-    display: none;
-  }
-  .formRegister {
-    width: 90%;
-  }
-  .btnLoginTwo {
-    padding: 5px 54px;
-    margin-left: 0%;
-    display: flex;
-    justify-content: center;
-  }
-  @media (max-width: 780px) {
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .logoDestokp {
-      display: none;
-    }
-    .logoDestokpTwo img {
-      display: none;
-    }
-  }
-}
-/* ---- vista 404   ----  */
+/* ----- Diseño y medidas Vista 404.js ----- */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 .body404 {
   height: 100vh;
@@ -381,7 +393,6 @@ h4 {
   color: #9b59b6;
 }
 .content h4 {
-  font-size: 1.5em;
   margin-bottom: 20px;
   text-transform: uppercase;
   color: rgb(0, 0, 0);
@@ -397,19 +408,44 @@ h4 {
   margin: 25px 0;
   display: inline-flex;
 }
-.content .btns a {
-  display: inline-block;
-  margin: 0 10px;
-  text-decoration: none;
-  border: 2px solid #69a6ce;
-  color: #ee8176;
-  font-weight: bold;
-  padding: 10px 25px;
-  border-radius: 25px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
+
 .content .btns a:hover {
   background: #69a6ce;
   color: #fff;
+}
+/* ---- @media queries   ----  */
+@media (min-width: 320px) and (max-width: 768px) {
+  body {
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+  }
+  .logoDestokp {
+    display: none;
+  }
+  .logoDestokpTwo img {
+    display: none;
+  }
+  .loginPage {
+    display: flex;
+  }
+  .checkPage {
+    display: flex;
+    justify-content: center;
+  }
+  .loginContainer {
+    padding: 0% 0% 0% 0%;
+  }
+  #logoCheck {
+    display: none;
+  }
+  .formRegister {
+    width: 90%;
+  }
+  #btnLoginTwo {
+    padding: 5px 54px;
+    margin-left: 0%;
+    display: flex;
+    justify-content: center;
+  }
 }
