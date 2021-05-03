@@ -11,13 +11,9 @@ export default () => {
 <section id="containTwo">
 <div class="loginContainer">
 <!-- Logo -->   
- <section class="userPass" id="logoCheck"><img src="./imageProject/logoWartay.png" alt="Logo Wartay" width="150">
+ <section class="userPass" id="logoCheck"><img id="imagLogo" src="./imageProject/logoWartay.png" alt="Logo Wartay" width="320">
  </section>
  <!-- Texto inicio --> 
- <section class="userPass"><img src="./imageProject/usuario.jpeg" alt="Logo Registro" width="80">
- </section>
- <p class="userPass">Carga tu foto
- </p>
  <section class="formRegister">
  <div class="div-input">
  <i class="fas fa-envelope"></i>
@@ -25,8 +21,8 @@ export default () => {
    <p class="col-12 error" id="name-error"></p>
    </div>
    <div class="div-input">
-   <i class="fas fa-envelope></i>
-   <input id="user-lastname" class="controls" type="text" placeholder="Ingrese su Apellido" required>
+ <i class="fas fa-envelope"></i>
+   <input  id="user-lastname" class="controls" type="text" placeholder="Ingrese su Apellido" required />
    <p class="col-12 error" id="lastname-error"></p>
    </div>
    <div class="div-input">
@@ -61,10 +57,10 @@ export default () => {
 </div>
 </section>`;
   /* -----------------------------Iniciar sesión de nuevo----------------------------------- */
-  const btnLogin = viewCheck.querySelector('#btnLoginTwo');
-  btnLogin.addEventListener('click', () => { window.location.hash = ''; });
-  const checkForm = viewCheck.querySelector('.formRegister');
-  checkForm.addEventListener('submit', (e) => {
+  /* const btnLogin = viewCheck.querySelector('#btnLoginTwo');
+  btnLogin.addEventListener('click', () => { window.location.hash = ''; }); */
+  const checkForm = viewCheck.querySelector('#btnLoginTwo');
+  checkForm.addEventListener('click', (e) => {
     e.preventDefault();
     const newUserName = document.getElementById('user-name').value;
     const newUserLastName = document.getElementById('user-lastname').value;
@@ -131,6 +127,8 @@ export default () => {
             .then(() => {
               sendEmail()
                 .then(() => {
+                  alert('Registro exitoso, inicie sesión');
+                  window.location.hash = '';
                   error.classList.add('successful-message');
                   error.textContent = 'Please check your inbox to verify your account';
                 })

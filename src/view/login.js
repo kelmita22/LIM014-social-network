@@ -1,4 +1,6 @@
-import { signIn, signInForGoogle, currentUser } from '../js/auth.js';
+import {
+  signIn, signInForGoogle, currentUser, signInForFacebook,
+} from '../js/auth.js';
 import { sendDataCurrentUser, getDataUser } from '../js/firestore.js';
 
 export default () => {
@@ -11,11 +13,11 @@ export default () => {
   <div class="loginContainer">
     <!-- Logo -->
     <section>
-      <img
+      <img id="imagLogo"
         src="./imageProject/logoWartay.png"
         class="imgLogo"
         alt="Logo Wartay"
-        width="150"
+        width="320"
       />
     </section>
     <!-- Texto inicio -->
@@ -53,6 +55,7 @@ export default () => {
   /* --------------------------------------loguearse------------------------------- */
   const btnNewAccount = viewLogin.querySelector('.checkIn');
   btnNewAccount.addEventListener('click', () => { window.location.hash = '#/check'; });
+  // Función para registarse con Gmail
   const btnGoogle = viewLogin.querySelector('#btnGmail');
   btnGoogle.addEventListener('click', () => {
     signInForGoogle()
@@ -70,12 +73,30 @@ export default () => {
           });
       });
   });
+  // Funció para registarse con Facebook
+  const btnFacebook = viewLogin.querySelector('#btnFacebook');
+  btnFacebook.addEventListener('click', () => {
+    signInForFacebook()
+      .then(() => {
+        getDataUser(currentUser().uid)
+          .then((doc) => {
+            if (doc.exists) {
+              window.location.hash = '#/home';
+            } else {
+              sendDataCurrentUser(currentUser())
+                .then(() => {
+                  window.location.hash = '#/home';
+                });
+            }
+          });
+      });
+  });
   /* ----------------credenciales de inicio de sesión-------------- */
-  const signInForm = viewLogin.querySelector('#loginForm');
-  signInForm.addEventListener('submit', (e) => {
+  const signInForm = viewLogin.querySelector('.btn-logIn');
+  signInForm.addEventListener('click', (e) => {
     e.preventDefault();
-    const email = viewLogin.querySelector('#email').value;
-    const password = viewLogin.querySelector('#password').value;
+    const email = viewLogin.querySelector('#userEmail').value;
+    const password = viewLogin.querySelector('#userPassword').value;
     const error = viewLogin.querySelector('#error-message');
     signIn(email, password)
       .then((data) => {
