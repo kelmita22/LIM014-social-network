@@ -8,6 +8,10 @@ export const signInForGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return auth.signInWithPopup(provider);
 };
+export const signInForFacebook = () => {
+  const provider = new firebase.auth.FacebookAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
+};
 // ---------------------------------------------SIGN UP---------------------------------------
 export const createUser = (email, password) => {
   const auth = firebase.auth();
