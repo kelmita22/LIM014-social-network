@@ -7,7 +7,7 @@ export const sendDataCurrentUser = (user) => {
     Photo = user.photoURL;
     Name = user.displayName;
   } else {
-    Photo = '../src/imageProject/avatar.png';
+    Photo = './imageProject/avatar.png';
     Name = 'User';
   }
   return db.collection('SN_Users').doc(user.uid).set({
