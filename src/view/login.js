@@ -25,11 +25,9 @@ export default () => {
     <!-- Inputs de ingreso -->
     <form id="loginForm">
     <div class="div-input">
-    <i class="fas fa-lock"></i>
         <input id="userEmail" type="email" placeholder="Email" required />
       </div>
       <div class="div-input">
-        <i class="fas fa-lock"></i>
         <input id="userPassword" type="password" placeholder="Contraseña" required />
       </div>
       <!-- Botón Login -->
@@ -54,7 +52,7 @@ export default () => {
 </section>`;
   /* --------------------------------------loguearse------------------------------- */
   const btnNewAccount = viewLogin.querySelector('.checkIn');
-  btnNewAccount.addEventListener('click', () => { window.location.hash = '#/check'; });
+  btnNewAccount.addEventListener('click', () => { window.location.hash = '#/registrate'; });
   // Función para registarse con Gmail
   const btnGoogle = viewLogin.querySelector('#btnGmail');
   btnGoogle.addEventListener('click', () => {

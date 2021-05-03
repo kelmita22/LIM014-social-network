@@ -6,7 +6,7 @@ export default () => {
   const viewCheck = document.createElement('section');
   viewCheck.classList.add('container-check');
   viewCheck.innerHTML = `<section class="logoDestokp">
-  <img src="./imageProject/logoDestok.jpg" alt="logoDestok" >
+  <img src="./imageProject/logoDestok.jpg" alt="logoDestok" id="logoD" >
 </section>
 <section id="containTwo">
 <div class="loginContainer">
@@ -16,17 +16,14 @@ export default () => {
  <!-- Texto inicio --> 
  <section class="formRegister">
  <div class="div-input">
- <i class="fas fa-envelope"></i>
    <input  id="user-name" class="controls" type="text" placeholder="Ingresa tu nombre" required />
    <p class="col-12 error" id="name-error"></p>
    </div>
    <div class="div-input">
- <i class="fas fa-envelope"></i>
    <input  id="user-lastname" class="controls" type="text" placeholder="Ingrese su Apellido" required />
    <p class="col-12 error" id="lastname-error"></p>
    </div>
    <div class="div-input">
-   <i class="fas fa-envelope"></i>
    <input class="controls" id="email" type="email" placeholder="Ingrese su Correo" required />
    <p class="col-12 error" id="email-error">
    </p>
@@ -43,12 +40,9 @@ export default () => {
   </select>
   </div>
   <div class="div-input">
-  <i class="fas fa-lock"></i>
-   <input class="controls" id="password" type="password" placeholder="Ingrese su Contraseña" required />
-   <span class="tooltiptext">Debes ingresar una contraseña con minimo 6 caracteres</span>
-   </div>
+  <label class="tooltiptext">Debes ingresar una contraseña con minimo 6 caracteres</label>
+   <input class="controls" id="password" type="password" placeholder="Ingrese su Contraseña" required />   </div>
    <div class="div-input">
-   <i class="fas fa-lock"></i>
    <input class="controls"  id= "password-confirm" type="password" placeholder="Confirme Contraseña" required>
    <p class="col-12 error" id="pass-error"></p>
    <button type="submit" id="btnLoginTwo" class="btnLoginTwo">Crear cuenta</button>

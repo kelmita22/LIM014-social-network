@@ -3,15 +3,14 @@ import { signOut } from '../js/auth.js';
 export default () => {
   const viewHeader = document.createElement('section');
   viewHeader.classList.add('main-header');
-  viewHeader.innerHTML = `
-<nav>
+  viewHeader.innerHTML = `<nav>
   <ul class="menu-header">
     <div id="left-menu-header" class= "box">
       <li class="home-header"><a href="#/home"><i class="fas fa-home"></i>Home</a></li>
       <li class="profile-header"><a href="#/profile"><i class="fas fa-user-circle"></i>Profile</a></li>
     </div>
-      <li class="title-header box"><a href="#/home">Wartay<i class="fas fa-umbrella-beach"></i></a></li>
-      <li id="log-out-header" class="box"><span id ="btn-singOut"><i class="fas fa-sign-out-alt"></i>Log out</span></li>
+      <li class="title-header box"><a href="#/home"><img class="logowar" src="./imageProject/logow.png" width="50px">Wartay</a></li>
+      <li id="log-out-header" class="boxOut"><span id ="btn-singOut"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</span></li>
   </ul>
 </nav>
 <i id="hamburger-menu" class="fas fa-bars hide"></i>
