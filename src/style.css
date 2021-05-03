@@ -13,13 +13,17 @@ body {
   width: 110%;
   max-width: 100%;
 }
-.loginPage {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.container-logIn{
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
 }
-.checkPage {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.container-check {
+  display: flex;
+ justify-content: space-around;
 }
 /* medidas del banner */
 .logoDestokp {
@@ -80,6 +84,7 @@ button {
   outline: none;
   border-radius: 30px;
   font-size: 1.1em;
+  margin-bottom: 5%;
 }
 /* color y medidas inputs */
 input {
@@ -89,7 +94,7 @@ input {
   padding: 14px 64px;
 }
 /* diseño botón login */
-#btnLogin {
+.btn-logIn {
   color: #fff;
   padding: 14px 64px;
   margin: 20px auto;
@@ -97,7 +102,7 @@ input {
   background: #e67ea8;
   border-radius: 10px;
 }
-#btnLogin:hover {
+.btn-logIn:hover {
   background-color: #3b99f7;
 }
 /* ubicación y medidas logos facebook, gmail */
@@ -123,6 +128,7 @@ input {
 .formRegister {
   width: 400px;
   border-style: solid;
+  border-radius: 30px;
   border-color: rgb(136, 120, 120);
   padding: 30px;
   margin-top: 10px;
@@ -245,7 +251,10 @@ header {
   height: 200px;
   background: #3b99f7;
 }
-
+.container-home{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
 .camara {
   height: 50px;
   width: 50px;
@@ -301,14 +310,14 @@ h4 {
   margin-right: 71%;
   width: 10%;
 }
-#postmypost {
+#btn-post {
   color: #fff;
   padding: 9px 5px;
   font-weight: bold;
   background: #e67ea8;
   border-radius: 10px;
 }
-#postmypost:hover {
+#btn-post:hover {
   background: #3b99f7;
 }
 .mainpost {
@@ -420,14 +429,21 @@ h4 {
     justify-content: center;
     max-width: 100%;
   }
+  #imagLogo{
+    width: 100%;
+  }
   .logoDestokp {
     display: none;
   }
   .logoDestokpTwo img {
     display: none;
   }
-  .loginPage {
+  .container-logIn {
+    margin-top: 11%;
     display: flex;
+    justify-content: space-around;
+    width: 0%;
+    height: 0%;
   }
   .checkPage {
     display: flex;
@@ -436,15 +452,12 @@ h4 {
   .loginContainer {
     padding: 0% 0% 0% 0%;
   }
-  #logoCheck {
-    display: none;
-  }
+ 
   .formRegister {
     width: 90%;
   }
   #btnLoginTwo {
     padding: 5px 54px;
-    margin-left: 0%;
     display: flex;
     justify-content: center;
   }
