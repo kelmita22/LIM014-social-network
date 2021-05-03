@@ -1,13 +1,13 @@
-import auth from '../js/authFirebase.js';
-import users from '../js/users.js';
+/* import auth from '../js/authFirebase.js';
+import users from '../js/users.js'; */
 
-import { components } from '../view/index.js';
+/* import { components } from '../view/index.js';
 import {
   validateEmail,
-} from '../js/validation.js';
+} from '../js/validation.js'; */
 
 // función callback para loguearse con facebook
-const facebook = () => {
+/* const facebook = () => {
   auth.loginFacebook()
     .then((result) => {
       console.log(result.user.displayName);
@@ -28,9 +28,9 @@ const google = () => {
     .catch((error) => {
       console.error(error);
     });
-};
+}; */
 
-const changeView = (route) => {
+/* const changeView = (route) => {
   const container = document.getElementById('container');
   container.innerHTML = '';
   switch (route) {
@@ -45,7 +45,7 @@ const changeView = (route) => {
         const email = document.getElementById('userEmail').value;
         const password = document.getElementById('userPassword').value;
         /* Validación del dom */
-        const emailerror = document.getElementById('emailerror');
+/* const emailerror = document.getElementById('emailerror');
         const passerror = document.getElementById('passerror');
         if (email === '' || !validateEmail(email)) {
           emailerror.style.display = 'block';
@@ -113,7 +113,6 @@ const changeView = (route) => {
           // Validando que las contraseñas sean mayor o igua a 6 digitos
           if (newUserPass === '' || newUserPass.length < 6) {
             document.getElementById('pass-error').style.display = 'block';
-            document.getElementById('pass-error').innerHTML = 'Debes ingresar una contraseña con minimo 6 caracteres.';
             document.getElementById('password').focus();
             validationOk = false;
           } else {
@@ -169,7 +168,6 @@ const changeView = (route) => {
               }
             })
               .catch(() => {
-                alert('La dirección de correo electrónico ya está siendo utilizada por otra cuenta');
               });
           }
         });
@@ -189,3 +187,43 @@ const changeView = (route) => {
   return 0;
 };
 export { changeView };
+import { components } from '../view/index.js';
+import { getDataUser } from './controller-firestore.js';
+import { currentUser } from './controller-auth.js';
+
+const changeView = (route) => {
+  const container = document.querySelector('#container');
+  window.location.hash = route;
+  container.innerHTML = '';
+  switch (route) {
+    case '':
+      container.appendChild(components.signIn());
+      break;
+    case '#/signUp':
+      container.appendChild(components.signUp());
+      break;
+    case '#/home':
+      container.appendChild(components.header());
+      document.querySelector('.home-header').style.textDecoration = 'underline';
+      getDataUser(currentUser().uid)
+        .then((doc) => {
+          container.appendChild(components.home(doc.data()));
+        });
+      break;
+    case '#/profile':
+      container.appendChild(components.header());
+      document.querySelector('.profile-header').style.textDecoration = 'underline';
+      getDataUser(currentUser().uid)
+        .then((doc) => {
+          container.appendChild(components.profile(doc.data()));
+        });
+      break;
+    case '#/recoverPassword':
+      container.appendChild(components.recoverPassword());
+      break;
+    default:
+      break;
+  }
+};
+
+export { changeView }; */
