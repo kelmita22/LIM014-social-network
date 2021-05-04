@@ -17,11 +17,10 @@ export const itemComment = (objComment, idPost) => {
   <div class = "comment-container">
     <p class="name-comment"></p>
     <p class = "comment-text">${objComment.comment}</p>
-    <div class = "hide edit-comment-text-btns">
+    <div class = "edit-comment-text-btns">
       <textarea class = "edit-comment-text">${objComment.comment}</textarea>
       <div class = "edit-comment-btns">
         <button type="button" class="btn-save-comment-${objComment.id}">Save</button>
-        <button type="button" class="btn-cancel-comment">Cancel</button>
       </div>
     </div>
     <p class="time-comment">${objComment.date}</p>
@@ -49,18 +48,18 @@ export const itemComment = (objComment, idPost) => {
   /* -------------- editar y borrar comentario -------------------*/
   const editComment = commentElement.querySelector('#edit-comment');
   const editCommentText = commentElement.querySelector('.edit-comment-text');
-  const btnCancelComment = commentElement.querySelector('.btn-cancel-comment');
+  // const btnCancelComment = commentElement.querySelector('.btn-cancel-comment');
   // editar comentario
   editComment.addEventListener('click', () => {
-    commentElement.querySelector('.edit-comment-text-btns').classList.remove('hide');
+    commentElement.querySelector('.edit-comment-text-btns').style.display = 'block';
     commentElement.querySelector('.comment-text').classList.add('hide');
   });
   // cancelar edición de comentario
-  btnCancelComment.addEventListener('click', () => {
-    commentElement.querySelector('.edit-comment-text-btns').classList.add('hide');
+  /* btnCancelComment.addEventListener('click', () => {
+    commentElement.querySelector('.edit-comment-text-btns').style.display = 'block';
     commentElement.querySelector('.comment-text').classList.remove('hide');
     editCommentText.value = objComment.comment;
-  });
+  }); */
   // actualizar comentario
   const btnSaveComment = commentElement.querySelector(`.btn-save-comment-${objComment.id}`);
   btnSaveComment.addEventListener('click', () => {

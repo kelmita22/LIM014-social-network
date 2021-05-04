@@ -40,17 +40,15 @@ export const itemPost = (objPost) => {
   </div>       
   <div class="content-post">
     <p class="text-post">${objPost.publication}</p>
-    <div class = "hide edit-text-post">
+    <div class = "edit-text-post">
       <textarea class="edit-text">${objPost.publication}</textarea>
       <div class = "edit-text-btns">
         <button type="button" class="btn-save-edit-${objPost.id}">Save</button>
-        <button type="button" class="btn-cancel-edit">Cancel</button>
       </div>
     </div>
     <img id="post-img" class="post-img" src='${objPost.urlimg}'/>
     <div class="like-comment-container">
-      <p class="${(reactionCounter === 0) ? 'hide' : 'count-like'}" > ${reactionCounter} reactions
-        <span class = "tooltiptext"><i class="fa fa-thumbs-up like"></i> ${objPost.likes.length} &nbsp <i class="fas fa-plane-departure plane"></i> 
+      <p id="likes" class="${(reactionCounter === 0) ? 'hide' : 'count-like'}" > ${reactionCounter} reactions
       </p>
       <p id = "count-comment" class="${(reactionCounter === 0) ? 'count-comment' : 'count-comment-right'}"></p>     
       <hr>
@@ -94,18 +92,18 @@ export const itemPost = (objPost) => {
   const editPost = postElement.querySelector('#edit-post');
   const editPublication = postElement.querySelector('.edit-text');
   const btnSaveEdit = postElement.querySelector(`.btn-save-edit-${objPost.id}`);
-  const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
+  // const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
   // editar post
   editPost.addEventListener('click', () => {
-    postElement.querySelector('.edit-text-post').classList.remove('hide');
+    postElement.querySelector('.edit-text-post').style.display = 'block';
     postElement.querySelector('.text-post').classList.add('hide');
   });
   // cancelar la edición de post
-  btnCancelEdit.addEventListener('click', () => {
-    postElement.querySelector('.edit-text-post').classList.add('hide');
+  /* btnCancelEdit.addEventListener('click', () => {
+    postElement.querySelector('.edit-text-post').style.display = 'block';
     postElement.querySelector('.text-post').classList.remove('hide');
     editPublication.value = objPost.publication;
-  });
+  }); */
 
   // actualizar post
   btnSaveEdit.addEventListener('click', () => {
@@ -136,7 +134,7 @@ export const itemPost = (objPost) => {
   /* ------------Mostrar y ocultar comentario ------------------*/
   postElement.querySelector('#btn-comment').addEventListener('click', () => {
     postElement.querySelector('#btn-comment').classList.toggle('btn-comment-active');
-    postElement.querySelector('#container-comment').classList.toggle('hide');
+    postElement.querySelector('#container-comment').style.display = 'block';
   });
 
   /* ---------------------- agregar POST al clound------------------*/
