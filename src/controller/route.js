@@ -1,5 +1,5 @@
 import { components } from '../view/index.js';
-import { getDataUser } from '../js/firestore.js';
+import { getUserData } from '../js/firestore.js';
 import { currentUser } from '../js/auth.js';
 
 const changeView = (route) => {
@@ -19,31 +19,31 @@ const changeView = (route) => {
     }
     case '#/home': {
       container.appendChild(components.header());
-      document.querySelector('.home-header').style.textDecoration = 'underline';
       const user = currentUser();
-      getDataUser(user.uid)
+      getUserData(user.uid)
         .then((doc) => {
           container.appendChild(components.home(doc.data()));
         }).catch((error) => {
-          console.log('ErrorHome: ', error);
+          console.log(error);
         });
       break;
     }
     case '#/profile': {
       container.appendChild(components.header());
-      document.querySelector('.profile-header').style.textDecoration = 'underline';
       const user = currentUser();
-      getDataUser(user.uid)
+      getUserData(user.uid)
         .then((doc) => {
           container.appendChild(components.profile(doc.data()));
         }).catch((error) => {
-          console.log('ErrorHome: ', error);
+          console.log(error);
         });
       break;
     }
     default:
+      container.appendChild(components.viewDifferent());
       break;
   }
+  return 0;
 };
 
 export { changeView };
