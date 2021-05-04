@@ -1,34 +1,32 @@
-import { createUser, sendEmail } from '../js/auth.js';
-import { sendDataCurrentUser } from '../js/firestore.js';
+import { signUp, emailVerification } from '../js/auth.js';
+import { userData } from '../js/firestore.js';
 import { validateEmail } from '../js/validation.js';
 
 export default () => {
   const viewCheck = document.createElement('section');
   viewCheck.classList.add('container-check');
   viewCheck.innerHTML = `<section class="logoDestokp">
-  <img src="./imageProject/logoDestok.jpg" alt="logoDestok" id="logoD" >
+  <img src="./imageProject/logoDestok.jpg" alt="logoDestok">
 </section>
 <section id="containTwo">
-<div class="loginContainer">
-<!-- Logo -->   
- <section class="userPass" id="logoCheck"><img id="imagLogo" src="./imageProject/logoWartay.png" alt="Logo Wartay" width="320">
+<div class="loginContainer">  
+ <section class="userPass" ><img id="imagLogo" src="./imageProject/iconWartay.png" alt="Logo Wartay" width="320">
  </section>
- <!-- Texto inicio --> 
  <section class="formRegister">
- <div class="div-input">
+ <div>
    <input  id="user-name" class="controls" type="text" placeholder="Ingresa tu nombre" required />
    <p class="col-12 error" id="name-error"></p>
    </div>
-   <div class="div-input">
+   <div>
    <input  id="user-lastname" class="controls" type="text" placeholder="Ingrese su Apellido" required />
    <p class="col-12 error" id="lastname-error"></p>
    </div>
-   <div class="div-input">
+   <div>
    <input class="controls" id="email" type="email" placeholder="Ingrese su Correo" required />
    <p class="col-12 error" id="email-error">
    </p>
    </div>
-   <div class="div-input">
+   <div>
    <label>Eres un profesor, estudiante ó padre de familia:</label>
    <select class="controls" name="Orden" >
   <option value="" disabled selected>Ejem.Prof, estudiante, padre</option>
@@ -39,22 +37,20 @@ export default () => {
   <option value="za">Estudiante</option>
   </select>
   </div>
-  <div class="div-input">
+  <div>
   <label class="tooltiptext">Debes ingresar una contraseña con minimo 6 caracteres</label>
    <input class="controls" id="password" type="password" placeholder="Ingrese su Contraseña" required />   </div>
-   <div class="div-input">
+   <div>
    <input class="controls"  id= "password-confirm" type="password" placeholder="Confirme Contraseña" required>
    <p class="col-12 error" id="pass-error"></p>
-   <button type="submit" id="btnLoginTwo" class="btnLoginTwo">Crear cuenta</button>
-   <p class="col-12 error" id="signup-error"></p>
+   <button type="submit" id="btnLoginTwo">Crear cuenta</button>
+   <p class="col-12 error"></p>
  </section>
 </div>
 </section>`;
-  /* -----------------------------Iniciar sesión de nuevo----------------------------------- */
-  /* const btnLogin = viewCheck.querySelector('#btnLoginTwo');
-  btnLogin.addEventListener('click', () => { window.location.hash = ''; }); */
-  const checkForm = viewCheck.querySelector('#btnLoginTwo');
-  checkForm.addEventListener('click', (e) => {
+  // Inicio de sesión
+  const checkBotton = viewCheck.querySelector('#btnLoginTwo');
+  checkBotton.addEventListener('click', (e) => {
     e.preventDefault();
     const newUserName = document.getElementById('user-name').value;
     const newUserLastName = document.getElementById('user-lastname').value;
@@ -68,7 +64,6 @@ export default () => {
       document.getElementById('pass-error').innerHTML = 'Contraseñas no coinciden';
       document.getElementById('password').value = '';
       document.getElementById('password-confirm').value = '';
-      document.getElementById('password').focus();
       validationOk = false;
     } else {
       document.getElementById('pass-error').style.display = 'none';
@@ -76,7 +71,6 @@ export default () => {
     // Validando que las contraseñas sean mayor o igua a 6 digitos
     if (newUserPass === '' || newUserPass.length < 6) {
       document.getElementById('pass-error').style.display = 'block';
-      document.getElementById('password').focus();
       validationOk = false;
     } else {
       document.getElementById('pass-error').style.display = 'none';
@@ -86,7 +80,6 @@ export default () => {
       document.getElementById('email-error').style.display = 'block';
       document.getElementById('email-error').innerHTML = 'Debes ingresar un correo válido.';
       document.getElementById('email').value = '';
-      document.getElementById('email').focus();
       validationOk = false;
     } else {
       document.getElementById('email-error').style.display = 'none';
@@ -108,37 +101,25 @@ export default () => {
       document.getElementById('lastname-error').style.display = 'none';
     }
     if (validationOk) {
-      const error = viewCheck.querySelector('#error-message');
-      createUser(newUserEmail, newUserPass)
+      signUp(newUserEmail, newUserPass)
         .then((result) => {
-          const userData = {
+          const dataUser = {
             uid: result.user.uid,
             email: newUserEmail,
             firstnames: newUserName,
             lastnames: newUserLastName,
           };
-          sendDataCurrentUser(userData)
-            .then(() => {
-              sendEmail()
-                .then(() => {
-                  alert('Registro exitoso, inicie sesión');
-                  window.location.hash = '';
-                  error.classList.add('successful-message');
-                  error.textContent = 'Please check your inbox to verify your account';
-                })
-                .catch((err) => {
-                  error.classList.add('error-message');
-                  error.textContent = err.message;
-                });
-            })
-            .catch((err) => {
-              error.classList.remove('successful-message');
-              error.classList.add('error-message');
-              error.textContent = err.message;
-              setTimeout(() => {
-                error.textContent = '';
-              }, 4000);
+          userData(dataUser)
+            .then((resu) => {
+              emailVerification(resu);
+              alert('Se registro exitosamente, se envio un correo para la verificación');
+              window.location.hash = '#/';
+            }).catch((error) => {
+              console.log(error);
             });
+        })
+        .catch(() => {
+          alert('La dirección de correo electrónico ya está siendo utilizada por otra cuenta');
         });
     }
   });
