@@ -1,15 +1,14 @@
-import { updateComment, deleteComment, getDataUser } from '../js/firestore.js';
+import { upgradeComment, removeComment, getUserData } from '../js/firestore.js';
 
 export const itemComment = (objComment, idPost) => {
-  const userId = firebase.auth().currentUser.uid;
   const commentElement = document.createElement('div');
   commentElement.classList.add('all-comments');
   commentElement.innerHTML = `
-    <div class="${(userId !== objComment.userId) ? 'hide' : 'show menu-comment'}">
+    <div>
     <i class="fas fa-ellipsis-v btn-menu-comment"></i>
     <div id="menu-comment-content" class="menu-comment-content">
     <li id="edit-comment"><i class="fas fa-edit select"></i> Edit</li>
-    <li id="delete-comment-${objComment.id}"><i class="fas fa-trash-alt select"></i> Delete</li>
+    <li id="delete-comment"><i class="fas fa-trash-alt select"></i> Delete</li>
   </div>
 </div> 
 <div class = "photo-comment-container">
@@ -20,55 +19,47 @@ export const itemComment = (objComment, idPost) => {
     <div class = "edit-comment-text-btns">
       <textarea class = "edit-comment-text">${objComment.comment}</textarea>
       <div class = "edit-comment-btns">
-        <button type="button" class="btn-save-comment-${objComment.id}">Save</button>
+        <button type="button" class="btn-save-comment">Save</button>
       </div>
     </div>
     <p class="time-comment">${objComment.date}</p>
   </div>
 </div>
   `;
-  getDataUser(objComment.userId)
+  getUserData(objComment.userId)
     .then((doc) => {
       const avatarComment = commentElement.querySelector('.avatar-comment');
       const nameComment = commentElement.querySelector('.name-comment');
       avatarComment.src = doc.data().photo;
       nameComment.textContent = doc.data().username;
     });
-  /* ---------------- Menucomentarios --------------------------*/
+  // Función para mostrar los comentarios
   const btnMenuComment = commentElement.querySelector('.btn-menu-comment');
   btnMenuComment.addEventListener('click', () => {
-    commentElement.querySelector('#menu-comment-content').classList.toggle('show');
+    commentElement.querySelector('#menu-comment-content').style.display = 'block';
   });
-  // cerrar el desplegable con click por fuera
+  // Cerrar los comentarios
   window.addEventListener('click', (e) => {
     if (e.target !== btnMenuComment) {
-      commentElement.querySelector('#menu-comment-content').classList.remove('show');
+      commentElement.querySelector('#menu-comment-content').style.display = 'none';
     }
   });
-  /* -------------- editar y borrar comentario -------------------*/
+  // Constantes para editar y borrar comentarios
   const editComment = commentElement.querySelector('#edit-comment');
   const editCommentText = commentElement.querySelector('.edit-comment-text');
-  // const btnCancelComment = commentElement.querySelector('.btn-cancel-comment');
   // editar comentario
   editComment.addEventListener('click', () => {
     commentElement.querySelector('.edit-comment-text-btns').style.display = 'block';
-    commentElement.querySelector('.comment-text').classList.add('hide');
   });
-  // cancelar edición de comentario
-  /* btnCancelComment.addEventListener('click', () => {
-    commentElement.querySelector('.edit-comment-text-btns').style.display = 'block';
-    commentElement.querySelector('.comment-text').classList.remove('hide');
-    editCommentText.value = objComment.comment;
-  }); */
   // actualizar comentario
-  const btnSaveComment = commentElement.querySelector(`.btn-save-comment-${objComment.id}`);
+  const btnSaveComment = commentElement.querySelector('.btn-save-comment');
   btnSaveComment.addEventListener('click', () => {
-    updateComment(idPost, objComment.id, editCommentText.value);
+    upgradeComment(idPost, objComment.id, editCommentText.value);
   });
   // borrar comentario
-  const deleteCommentSelect = commentElement.querySelector(`#delete-comment-${objComment.id}`);
+  const deleteCommentSelect = commentElement.querySelector('#delete-comment');
   deleteCommentSelect.addEventListener('click', () => {
-    deleteComment(idPost, objComment.id);
+    removeComment(idPost, objComment.id);
   });
   return commentElement;
 };

@@ -1,12 +1,12 @@
 import {
-  updateCurrentUser, updatephotoProfile, updatephotoCover, getPosts,
+  updateCurrentUser, profilePhoto, coveragePhoto, getPost,
 
 } from '../js/firestore.js';
 
 import {
   currentUser,
 } from '../js/auth.js';
-import { sendImgToStorage } from '../js/storage.js';
+import { imgStorage } from '../js/storage.js';
 import { itemPost } from './post.js';
 
 export default (dataCurrentUser) => {
@@ -68,7 +68,7 @@ export default (dataCurrentUser) => {
   const selectPhotoProfile = viewProfile.querySelector('#select-photo-profile');
   selectPhotoProfile.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    const uploadTask = sendImgToStorage(file, 'SN-imgProfile');
+    const uploadTask = imgStorage(file, 'SN-imgProfile');
     const messageProgress = viewProfile.querySelector('#messageProgress');
     const modalProgress = viewProfile.querySelector('.modal-progress');
     const uploader = viewProfile.querySelector('#uploader');
@@ -84,7 +84,7 @@ export default (dataCurrentUser) => {
       // carga exitosa
       uploadTask.snapshot.ref.getDownloadURL()
         .then((downloadURL) => {
-          updatephotoProfile(currentUser().uid, downloadURL)
+          profilePhoto(currentUser().uid, downloadURL)
             .then(() => window.location.reload());
         });
     });
@@ -93,7 +93,7 @@ export default (dataCurrentUser) => {
   const selectCoverPage = viewProfile.querySelector('#select-cover-page');
   selectCoverPage.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    const uploadTask = sendImgToStorage(file, 'SN-imgCover');
+    const uploadTask = imgStorage(file, 'SN-imgCover');
     const messageProgress = viewProfile.querySelector('#messageProgress');
     const modalProgress = viewProfile.querySelector('.modal-progress');
     const uploader = viewProfile.querySelector('#uploader');
@@ -109,7 +109,7 @@ export default (dataCurrentUser) => {
       // carga exitosa
       uploadTask.snapshot.ref.getDownloadURL()
         .then((downloadURL) => {
-          updatephotoCover(currentUser().uid, downloadURL)
+          coveragePhoto(currentUser().uid, downloadURL)
             .then(() => window.location.reload());
         });
     });
@@ -150,7 +150,7 @@ export default (dataCurrentUser) => {
   /* ---------------------- agregar post------------------*/
   const containerUserPost = viewProfile.querySelector('.container-user-post');
   const userId = firebase.auth().currentUser.uid;
-  getPosts((post) => {
+  getPost((post) => {
     containerUserPost.innerHTML = '';
     post.forEach((objPost) => {
       if (userId === objPost.userId) {

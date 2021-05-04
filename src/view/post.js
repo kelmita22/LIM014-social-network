@@ -1,5 +1,5 @@
 import {
-  deletePost, updatePost, updatePrivacy, addComment, getComment, getDataUser, updateLike,
+  removePost, upgradePost, commentAdd, getComment, getUserData, upgradeLike,
 } from '../js/firestore.js';
 import {
   currentUser,
@@ -65,7 +65,7 @@ export const itemPost = (objPost) => {
   </div>
 </div>
 `;
-  getDataUser(objPost.userId)
+  getUserData(objPost.userId)
     .then((doc) => {
       const avatarPhoto = postElement.querySelector('.avatar-post');
       const username = postElement.querySelector('.username');
@@ -107,28 +107,23 @@ export const itemPost = (objPost) => {
 
   // actualizar post
   btnSaveEdit.addEventListener('click', () => {
-    updatePost(objPost.id, editPublication.value);
+    upgradePost(objPost.id, editPublication.value);
   });
   // borrar post
   postElement.querySelector(`#delete-post-${objPost.id}`)
     .addEventListener('click', () => {
-      deletePost(objPost.id);
+      removePost(objPost.id);
     });
-  // actualizar privacidad de los estados
-  const privacyStatus = postElement.querySelector('#privacy-option');
-  privacyStatus.addEventListener('change', () => {
-    updatePrivacy(objPost.id, privacyStatus.value);
-  });
   // actualizarlikes
   const likes = postElement.querySelector('#btn-like');
   likes.addEventListener('click', () => {
     const result = objPost.likes.indexOf(userId);
     if (result === -1) {
       objPost.likes.push(userId);
-      updateLike(objPost.id, objPost.likes);
+      upgradeLike(objPost.id, objPost.likes);
     } else {
       objPost.likes.splice(result, 1);
-      updateLike(objPost.id, objPost.likes);
+      upgradeLike(objPost.id, objPost.likes);
     }
   });
   /* ------------Mostrar y ocultar comentario ------------------*/
@@ -142,7 +137,7 @@ export const itemPost = (objPost) => {
   formComment.addEventListener('submit', (e) => {
     const comment = postElement.querySelector('.comment').value;
     e.preventDefault();
-    addComment(currentUser().uid, objPost.id, comment)
+    commentAdd(currentUser().uid, objPost.id, comment)
       .then(() => {
         formComment.reset();
       });

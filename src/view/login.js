@@ -1,7 +1,7 @@
 import {
-  signIn, signInForGoogle, currentUser, signInForFacebook,
+  signIn, loginGoogle, currentUser, loginFacebook,
 } from '../js/auth.js';
-import { sendDataCurrentUser, getDataUser } from '../js/firestore.js';
+import { userData, getUserData } from '../js/firestore.js';
 
 export default () => {
   const viewLogin = document.createElement('section');
@@ -14,8 +14,7 @@ export default () => {
     <!-- Logo -->
     <section>
       <img id="imagLogo"
-        src="./imageProject/logoWartay.png"
-        class="imgLogo"
+        src="./imageProject/iconWartay.png"
         alt="Logo Wartay"
         width="320"
       />
@@ -24,15 +23,15 @@ export default () => {
     <p class="userPass">!Iniciar sesión en Wartay!</p>
     <!-- Inputs de ingreso -->
     <form id="loginForm">
-    <div class="div-input">
+    <div>
         <input id="userEmail" type="email" placeholder="Email" required />
       </div>
-      <div class="div-input">
+      <div>
         <input id="userPassword" type="password" placeholder="Contraseña" required />
       </div>
       <!-- Botón Login -->
       <button type="submit" class="btn-logIn">Login</a></button>
-      <p id = "error-message" class = "error-message"></p>
+      <p id = "error-message"></p>
       <!-- Ingreso con Facebook o Gmail -->
       <p class="userPass">o bien ingresa con...</p>
       <section class="links">
@@ -56,14 +55,14 @@ export default () => {
   // Función para registarse con Gmail
   const btnGoogle = viewLogin.querySelector('#btnGmail');
   btnGoogle.addEventListener('click', () => {
-    signInForGoogle()
+    loginGoogle()
       .then(() => {
-        getDataUser(currentUser().uid)
+        getUserData(currentUser().uid)
           .then((doc) => {
             if (doc.exists) {
               window.location.hash = '#/home';
             } else {
-              sendDataCurrentUser(currentUser())
+              userData(currentUser())
                 .then(() => {
                   window.location.hash = '#/home';
                 });
@@ -74,14 +73,14 @@ export default () => {
   // Funció para registarse con Facebook
   const btnFacebook = viewLogin.querySelector('#btnFacebook');
   btnFacebook.addEventListener('click', () => {
-    signInForFacebook()
+    loginFacebook()
       .then(() => {
-        getDataUser(currentUser().uid)
+        getUserData(currentUser().uid)
           .then((doc) => {
             if (doc.exists) {
               window.location.hash = '#/home';
             } else {
-              sendDataCurrentUser(currentUser())
+              userData(currentUser())
                 .then(() => {
                   window.location.hash = '#/home';
                 });
@@ -99,12 +98,12 @@ export default () => {
     signIn(email, password)
       .then((data) => {
         if (data.user.emailVerified) {
-          getDataUser(currentUser().uid)
+          getUserData(currentUser().uid)
             .then((doc) => {
               if (doc.exists) {
                 window.location.hash = '#/home';
               } else {
-                sendDataCurrentUser(currentUser())
+                userData(currentUser())
                   .then(() => {
                     window.location.hash = '#/home';
                   });
