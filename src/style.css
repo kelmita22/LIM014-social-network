@@ -321,12 +321,12 @@ label {
   color: #0d0d0d;
 }
 
-.content .btns {
+.content .bottons {
   margin: 25px 0;
   display: inline-flex;
 }
 
-.content .btns a:hover {
+.content .bottons a:hover {
   background: #69a6ce;
   color: #fff;
 }
@@ -650,12 +650,12 @@ background-color: white;
 .modal-settings label{
   display: block;
 }
-.grupo input, .grupo textarea, #birthdayEdit{
+/*.grupo input, .grupo textarea, #birthdayEdit{
 border: 1px solid #2CAB92;
 text-align: center;
 outline: none;
 border-radius: 5px;
-}
+}*/
 .grupo input{
 width: 100%;
 height: 40px;
@@ -665,9 +665,9 @@ width: 100%;
 height: 60px;
 resize: none;
 }
-#birthdayEdit{
+/*#birthdayEdit{
   height: 40px;
-}
+}*/
 .btn-update{
   border: none;
   background: #2CAB92;
@@ -679,12 +679,12 @@ resize: none;
   border-radius: 55px;
   outline: none;
 }
-.grupo input:focus, #birthdayEdit:focus, textarea:focus{
+/*.grupo input:focus, #birthdayEdit:focus, textarea:focus{
   box-shadow: 2px 7px 10px -5px #8894a0; 
 }
 .grupo input:hover, #birthdayEdit:hover, textarea:hover{
   border: 1.6px solid #2b7a75;
-}
+}*/
 .btn-update:hover{
   background: #2b7a75;
   width: 62%;
@@ -745,14 +745,23 @@ height: 44px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 #uploader[value]::-webkit-progress-value {
-background-image:
-  -webkit-linear-gradient(-45deg, transparent 33%,#0000001f 33%,  #35343421 66%, transparent 66%),
-  -webkit-linear-gradient(left,#2CAB92,#2aac92); 
+  background: -webkit-linear-gradient(
+    -45deg,
+    #71b7e6,
+    #69a6ce,
+    #b98acc,
+    #ee8176,
+    #b98acc,
+    #69a6ce,
+    #9b59b6
+  );
+  
 border-radius: 2px; 
 background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 #messageProgress{
-  background: #2aac9280;
+  background: #3b99f7;
+  color: white;
   border-radius: 50px;
   padding: 5px;
   margin-top: 20px;
@@ -859,7 +868,7 @@ hr{
   border-top: 1px solid rgba(240, 240, 240);
   margin: 10px 0;
 }
-#viewall{
+/*#viewall{
   color: #2CAB92;
   background-color: transparent;
   border-color: #2CAB92;
@@ -869,7 +878,7 @@ hr{
 #viewall:hover{
   border-color: #2b7a75;
   height: 30px;
-}
+}*/
 .interest span{
   color: #fff ;
   background-color: #2b7a75 ;
@@ -1338,14 +1347,14 @@ object-fit: cover;
   border-color: #444 transparent transparent transparent;
 }
 
-.fa-file-image:hover .tooltiptext,
+/*.fa-file-image:hover .tooltiptext,
 .fa-github:hover .tooltiptext,
 .fa-edit:hover .tooltiptext,
 .name:hover .tooltiptext,
 .btn-like:hover .tooltiptext,
 .count-like:hover .tooltiptext {
   visibility: visible;
-}
+} */
 .tooltiptext .like{
   color: #3dbee9;
 }
@@ -1365,4 +1374,5 @@ display: none;
 .fa-sign-out-alt:before,.fa-user-circle:before,.fa-home:before,.fa-file-image:before{
   color:#e67ea8;
 }
+
 
