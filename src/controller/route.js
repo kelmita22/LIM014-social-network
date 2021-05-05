@@ -18,7 +18,6 @@ const changeView = (route) => {
       break;
     }
     case '#/home': {
-      container.appendChild(components.header());
       const user = currentUser();
       getUserData(user.uid)
         .then((doc) => {
@@ -29,7 +28,6 @@ const changeView = (route) => {
       break;
     }
     case '#/profile': {
-      container.appendChild(components.header());
       const user = currentUser();
       getUserData(user.uid)
         .then((doc) => {
