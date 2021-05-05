@@ -33,6 +33,7 @@ export default (dataCurrentUser) => {
       <div class="user-information">
       <span class = "edit-info" id="btn-editProfile"><i class="fas fa-edit"><span class="tooltiptext">Edit information</span></i></span>
         <h2 class="user-name">${dataCurrentUser.username}</p>
+        <h2 class="user-name">${dataCurrentUser.profesión}</p>
         <h3>About me</h3>
       </div>
     </div>
@@ -50,8 +51,17 @@ export default (dataCurrentUser) => {
     </header>
     <form class="editProfile">
       <div class="grupo">
-        <label  for="usernameEdit">User name : </label>
-        <input type="text" id="usernameEdit" value="${dataCurrentUser.username}">
+      <label  for="usernameEdit">User name : </label>
+      <input type="text" id="usernameEdit" value="${dataCurrentUser.username}">
+      <label  for="userProfesión">User Profetion : </label>
+      <select id="userProfesión" class="controls" name="Orden" >
+  <option value="" disabled selected>Ejem.Prof, estudiante, padre</option>
+  <option value="${dataCurrentUser.profesión}">Profesor</option>
+  <option value="${dataCurrentUser.profesión}">Profesora</option>
+  <option value="${dataCurrentUser.profesión}">Padre</option>
+  <option value="${dataCurrentUser.profesión}">Madre</option>
+  <option value="${dataCurrentUser.profesión}">Estudiante</option>
+  </select>
       </div>
       <button type="submit" class="btn-update">UPDATE</a></button>
     </form>
@@ -141,7 +151,8 @@ export default (dataCurrentUser) => {
     const userId = currentUser().uid;
     e.preventDefault();
     const usernameEdit = viewProfile.querySelector('#usernameEdit').value;
-    updateCurrentUser(userId, usernameEdit)
+    const userProfetion = viewProfile.querySelector('#userProfesión').value;
+    updateCurrentUser(userId, usernameEdit, userProfetion)
       .then(() => {
         window.location.reload();
       });
