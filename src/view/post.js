@@ -100,12 +100,6 @@ export const itemPost = (objPost) => {
         postElement.querySelector('.edit-text-post').style.display = 'block';
         postElement.querySelector('.text-post').classList.add('hide');
       });
-      // cancelar la edición de post
-      /* btnCancelEdit.addEventListener('click', () => {
-    postElement.querySelector('.edit-text-post').style.display = 'block';
-    postElement.querySelector('.text-post').classList.remove('hide');
-    editPublication.value = objPost.publication;
-  }); */
 
       // actualizar post
       btnSaveEdit.addEventListener('click', () => {
@@ -114,7 +108,9 @@ export const itemPost = (objPost) => {
       // borrar post
       postElement.querySelector(`#delete-post-${objPost.id}`)
         .addEventListener('click', () => {
-          removePost(objPost.id);
+          if (userId === objPost.userId) {
+            removePost(objPost.id);
+          }
         });
       // actualizarlikes
       const likes = postElement.querySelector('#btn-like');
@@ -139,7 +135,7 @@ export const itemPost = (objPost) => {
       formComment.addEventListener('submit', (e) => {
         const comment = postElement.querySelector('.comment').value;
         e.preventDefault();
-        commentAdd(currentUser().uid, objPost.id, comment)
+        commentAdd(user.uid, objPost.id, comment)
           .then(() => {
             formComment.reset();
           });
