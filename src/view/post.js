@@ -7,12 +7,14 @@ import {
 import { itemComment } from './comments.js';
 
 export const itemPost = (objPost) => {
-  const userId = firebase.auth().currentUser.uid;
-  // contador
-  const reactionCounter = objPost.likes.length;
   const postElement = document.createElement('div');
-  postElement.classList.add('allpost');
-  postElement.innerHTML = `
+  const isUser = (user) => {
+    if (user || user !== null) {
+      const userId = user.uid;
+      // contador
+      const reactionCounter = objPost.likes.length;
+      postElement.classList.add('allpost');
+      postElement.innerHTML = `
   <div class="mainpost">
   <div class="user-post">
     <div class="${(userId !== objPost.userId) ? 'hide' : 'show menu-post'}">
@@ -65,92 +67,94 @@ export const itemPost = (objPost) => {
   </div>
 </div>
 `;
-  getUserData(objPost.userId)
-    .then((doc) => {
-      const avatarPhoto = postElement.querySelector('.avatar-post');
-      const username = postElement.querySelector('.username');
-      const nametooltip = postElement.querySelector('.nametooltip');
-      const tooltipimg = postElement.querySelector('.tooltipimg');
-      avatarPhoto.src = doc.data().photo;
-      tooltipimg.src = doc.data().photo;
-      username.textContent = doc.data().username;
-      nametooltip.textContent = doc.data().username.toUpperCase();
-    });
+      getUserData(objPost.userId)
+        .then((doc) => {
+          const avatarPhoto = postElement.querySelector('.avatar-post');
+          const username = postElement.querySelector('.username');
+          const nametooltip = postElement.querySelector('.nametooltip');
+          const tooltipimg = postElement.querySelector('.tooltipimg');
+          avatarPhoto.src = doc.data().photo;
+          tooltipimg.src = doc.data().photo;
+          username.textContent = doc.data().username;
+          nametooltip.textContent = doc.data().username.toUpperCase();
+        });
 
-  /* ---------------- Menu despegable --------------------------*/
-  const btnMenu = postElement.querySelector('.btn-menu-post');
-  btnMenu.addEventListener('click', () => {
-    postElement.querySelector('#menu-post-content').classList.toggle('show');
-  });
-  // cerrar con click por fuera
-  window.addEventListener('click', (e) => {
-    if (e.target !== btnMenu) {
-      postElement.querySelector('#menu-post-content').classList.remove('show');
-    }
-  });
-  /* -------------- editar el menu -------------------*/
-  const editPost = postElement.querySelector('#edit-post');
-  const editPublication = postElement.querySelector('.edit-text');
-  const btnSaveEdit = postElement.querySelector(`.btn-save-edit-${objPost.id}`);
-  // const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
-  // editar post
-  editPost.addEventListener('click', () => {
-    postElement.querySelector('.edit-text-post').style.display = 'block';
-    postElement.querySelector('.text-post').classList.add('hide');
-  });
-  // cancelar la edición de post
-  /* btnCancelEdit.addEventListener('click', () => {
-    postElement.querySelector('.edit-text-post').style.display = 'block';
-    postElement.querySelector('.text-post').classList.remove('hide');
-    editPublication.value = objPost.publication;
-  }); */
-
-  // actualizar post
-  btnSaveEdit.addEventListener('click', () => {
-    upgradePost(objPost.id, editPublication.value);
-  });
-  // borrar post
-  postElement.querySelector(`#delete-post-${objPost.id}`)
-    .addEventListener('click', () => {
-      removePost(objPost.id);
-    });
-  // actualizarlikes
-  const likes = postElement.querySelector('#btn-like');
-  likes.addEventListener('click', () => {
-    const result = objPost.likes.indexOf(userId);
-    if (result === -1) {
-      objPost.likes.push(userId);
-      upgradeLike(objPost.id, objPost.likes);
-    } else {
-      objPost.likes.splice(result, 1);
-      upgradeLike(objPost.id, objPost.likes);
-    }
-  });
-  /* ------------Mostrar y ocultar comentario ------------------*/
-  postElement.querySelector('#btn-comment').addEventListener('click', () => {
-    postElement.querySelector('#btn-comment').classList.toggle('btn-comment-active');
-    postElement.querySelector('#container-comment').style.display = 'block';
-  });
-
-  /* ---------------------- agregar POST al clound------------------*/
-  const formComment = postElement.querySelector('.formComment');
-  formComment.addEventListener('submit', (e) => {
-    const comment = postElement.querySelector('.comment').value;
-    e.preventDefault();
-    commentAdd(currentUser().uid, objPost.id, comment)
-      .then(() => {
-        formComment.reset();
+      /* ---------------- Menu despegable --------------------------*/
+      const btnMenu = postElement.querySelector('.btn-menu-post');
+      btnMenu.addEventListener('click', () => {
+        postElement.querySelector('#menu-post-content').classList.toggle('show');
       });
-  });
-  /* ---------------------- GET comentarios de container------------------*/
-  const containerAllComment = postElement.querySelector('#container-AllComment');
-  const counterComment = postElement.querySelector('#count-comment');
-  getComment(objPost.id, (comment) => {
-    containerAllComment.innerHTML = '';
-    comment.forEach((objComment) => {
-      containerAllComment.appendChild(itemComment(objComment, objPost.id));
-    });
-    counterComment.textContent = `${(comment.length !== 0) ? `${comment.length} comments` : ''}`;
-  });
+      // cerrar con click por fuera
+      window.addEventListener('click', (e) => {
+        if (e.target !== btnMenu) {
+          postElement.querySelector('#menu-post-content').classList.remove('show');
+        }
+      });
+      /* -------------- editar el menu -------------------*/
+      const editPost = postElement.querySelector('#edit-post');
+      const editPublication = postElement.querySelector('.edit-text');
+      const btnSaveEdit = postElement.querySelector(`.btn-save-edit-${objPost.id}`);
+      // const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
+      // editar post
+      editPost.addEventListener('click', () => {
+        postElement.querySelector('.edit-text-post').style.display = 'block';
+        postElement.querySelector('.text-post').classList.add('hide');
+      });
+
+      // actualizar post
+      btnSaveEdit.addEventListener('click', () => {
+        upgradePost(objPost.id, editPublication.value);
+      });
+      // borrar post
+      postElement.querySelector(`#delete-post-${objPost.id}`)
+        .addEventListener('click', () => {
+          if (userId === objPost.userId) {
+            removePost(objPost.id);
+          }
+        });
+      // actualizarlikes
+      const likes = postElement.querySelector('#btn-like');
+      likes.addEventListener('click', () => {
+        const result = objPost.likes.indexOf(userId);
+        if (result === -1) {
+          objPost.likes.push(userId);
+          upgradeLike(objPost.id, objPost.likes);
+        } else {
+          objPost.likes.splice(result, 1);
+          upgradeLike(objPost.id, objPost.likes);
+        }
+      });
+      /* ------------Mostrar y ocultar comentario ------------------*/
+      postElement.querySelector('#btn-comment').addEventListener('click', () => {
+        postElement.querySelector('#btn-comment').classList.toggle('btn-comment-active');
+        postElement.querySelector('#container-comment').style.display = 'block';
+      });
+
+      /* ---------------------- agregar POST al clound------------------*/
+      const formComment = postElement.querySelector('.formComment');
+      formComment.addEventListener('submit', (e) => {
+        const comment = postElement.querySelector('.comment').value;
+        e.preventDefault();
+        commentAdd(user.uid, objPost.id, comment)
+          .then(() => {
+            formComment.reset();
+          });
+      });
+      /* ---------------------- GET comentarios de container------------------*/
+      const containerAllComment = postElement.querySelector('#container-AllComment');
+      const counterComment = postElement.querySelector('#count-comment');
+      getComment(objPost.id, (comment) => {
+        containerAllComment.innerHTML = '';
+        comment.forEach((objComment) => {
+          containerAllComment.appendChild(itemComment(objComment, objPost.id));
+        });
+        counterComment.textContent = `${(comment.length !== 0) ? `${comment.length} comments` : ''}`;
+      });
+    } else {
+      window.location.hash = '#/';
+    }
+  };
+
+  currentUser(isUser);
   return postElement;
 };

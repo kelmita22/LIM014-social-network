@@ -3,13 +3,14 @@ import {
 } from '../js/firestore.js';
 import { imgStorage } from '../js/storage.js';
 import { itemPost } from './post.js';
-import { signOut } from '../js/auth.js';
+import { signOut, currentUser } from '../js/auth.js';
 
 export default (dataCurrentUser) => {
   const viewHome = document.createElement('section');
-  const userId = firebase.auth().currentUser.uid;
-  viewHome.classList.add('container-home');
-  viewHome.innerHTML = `
+  const isUser = (user) => {
+    if (user || user !== null) {
+      viewHome.classList.add('container-home');
+      viewHome.innerHTML = `
   <section class="main-header">
 <nav>
 <ul class="menu-header">
@@ -32,7 +33,6 @@ export default (dataCurrentUser) => {
       <h2 id="name">${dataCurrentUser.profesión}</p> 
     </div>
   </aside>
-
   <!-- media columna -->
   <main class="home-section">
     <!-- Post -->
@@ -67,91 +67,94 @@ export default (dataCurrentUser) => {
     </div>
   </section>
   `;
+      const hamburgerBotton = viewHome.querySelector('#hamburger-menu');
+      const homeNav = viewHome.querySelector('#left-menu-header');
+      const singOut = viewHome.querySelector('#log-out-header');
+      hamburgerBotton.addEventListener('click', () => {
+        homeNav.classList.toggle('active');
+        singOut.classList.toggle('active');
+      });
 
-  const hamburgerBotton = viewHome.querySelector('#hamburger-menu');
-  const homeNav = viewHome.querySelector('#left-menu-header');
-  const singOut = viewHome.querySelector('#log-out-header');
-  hamburgerBotton.addEventListener('click', () => {
-    homeNav.classList.toggle('active');
-    singOut.classList.toggle('active');
-  });
-
-  // Función para cerrar sesión
-  const btnSignOut = viewHome.querySelector('#btn-singOut');
-  btnSignOut.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.hash = '';
-    signOut();
-    /* .then(() => {
+      // Función para cerrar sesión
+      const btnSignOut = viewHome.querySelector('#btn-singOut');
+      btnSignOut.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.hash = '';
+        signOut();
+        /* .then(() => {
       }); */
-  });
-  const imagePost = viewHome.querySelector('#post-img');
-  const imageDelete = viewHome.querySelector('#remove-img');
-  const uploadImg = viewHome.querySelector('#upload-img');
+      });
+      const imagePost = viewHome.querySelector('#post-img');
+      const imageDelete = viewHome.querySelector('#remove-img');
+      const uploadImg = viewHome.querySelector('#upload-img');
 
-  // Función para cargar imagen para publicar
-  uploadImg.addEventListener('change', (e) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      imagePost.src = reader.result;
-    };
-    imageDelete.removeAttribute('style');
-  });
-  // Eliminar imagen del post
-  imageDelete.addEventListener('click', () => {
-    imagePost.src = '';
-    uploadImg.value = '';
-    imageDelete.style.display = 'none';
-  });
-  // Guardar post en firestore
-  const savePost = viewHome.querySelector('#form-post');
-  savePost.addEventListener('submit', (e) => {
-    e.preventDefault();
-    imagePost.src = '';
-    imageDelete.style.display = 'none';
-    const fileImage = e.target.closest('#form-post').querySelector('input').files[0];
-    const load = viewHome.querySelector('#uploader');
-    const postText = viewHome.querySelector('.text-newpost');
-    const enterModal = viewHome.querySelector('.modal-progress');
-    const textModal = viewHome.querySelector('#messageProgress');
+      // Función para cargar imagen para publicar
+      uploadImg.addEventListener('change', (e) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = () => {
+          imagePost.src = reader.result;
+        };
+        imageDelete.removeAttribute('style');
+      });
+      // Eliminar imagen del post
+      imageDelete.addEventListener('click', () => {
+        imagePost.src = '';
+        uploadImg.value = '';
+        imageDelete.style.display = 'none';
+      });
+      // Guardar post en firestore
+      const savePost = viewHome.querySelector('#form-post');
+      savePost.addEventListener('submit', (e) => {
+        e.preventDefault();
+        imagePost.src = '';
+        imageDelete.style.display = 'none';
+        const fileImage = e.target.closest('#form-post').querySelector('input').files[0];
+        const load = viewHome.querySelector('#uploader');
+        const postText = viewHome.querySelector('.text-newpost');
+        const enterModal = viewHome.querySelector('.modal-progress');
+        const textModal = viewHome.querySelector('#messageProgress');
 
-    if (fileImage) {
-      const uploadTask = imgStorage(fileImage, 'SN-imgPost');
-      uploadTask.on('state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        enterModal.classList.add('showModal');
-        textModal.textContent = 'Tu publicación fue completada exitosamente';
-        load.value = progress;
-      },
-      () => {
-      }, () => {
-        uploadTask.snapshot.ref.getDownloadURL()
-          .then((downloadURL) => {
-            postAdd(userId, postText.value, downloadURL)
-              .then(() => {
-                enterModal.classList.remove('showModal');
-                savePost.reset();
+        if (fileImage) {
+          const uploadTask = imgStorage(fileImage, 'SN-imgPost');
+          uploadTask.on('state_changed', (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            enterModal.classList.add('showModal');
+            textModal.textContent = 'Tu publicación fue completada exitosamente';
+            load.value = progress;
+          },
+          () => {
+          }, () => {
+            uploadTask.snapshot.ref.getDownloadURL()
+              .then((downloadURL) => {
+                postAdd(user.uid, postText.value, downloadURL)
+                  .then(() => {
+                    enterModal.classList.remove('showModal');
+                    savePost.reset();
+                  });
               });
           });
+        } else {
+          postAdd(user.uid, postText.value, '')
+            .then(() => {
+              enterModal.classList.remove('showModal');
+              savePost.reset();
+            });
+        }
+      });
+      /* -------------------------- agregar post----------------------*/
+      const boxPost = viewHome.querySelector('#container-post');
+      getPost((post) => {
+        boxPost.innerHTML = '';
+        post.forEach((objPost) => {
+          boxPost.appendChild(itemPost(objPost));
+        });
       });
     } else {
-      postAdd(userId, postText.value, '')
-        .then(() => {
-          enterModal.classList.remove('showModal');
-          savePost.reset();
-        });
+      window.location.hash = '#/';
     }
-  });
-  /* -------------------------- agregar post----------------------*/
-  const boxPost = viewHome.querySelector('#container-post');
-  getPost((post) => {
-    boxPost.innerHTML = '';
-    post.forEach((objPost) => {
-      if (objPost.userId === userId) {
-        boxPost.appendChild(itemPost(objPost));
-      }
-    });
-  });
+  };
+
+  currentUser(isUser);
   return viewHome;
 };

@@ -1,5 +1,5 @@
 import {
-  signIn, loginGoogle, currentUser, loginFacebook,
+  signIn, loginGoogle, loginFacebook,
 } from '../js/auth.js';
 import { userData, getUserData } from '../js/firestore.js';
 
@@ -56,13 +56,13 @@ export default () => {
   const btnGoogle = viewLogin.querySelector('#btnGmail');
   btnGoogle.addEventListener('click', () => {
     loginGoogle()
-      .then(() => {
-        getUserData(currentUser().uid)
+      .then((data) => {
+        getUserData(data.user.uid)
           .then((doc) => {
             if (doc.exists) {
               window.location.hash = '#/home';
             } else {
-              userData(currentUser())
+              userData(data.user)
                 .then(() => {
                   window.location.hash = '#/home';
                 });
@@ -74,13 +74,13 @@ export default () => {
   const btnFacebook = viewLogin.querySelector('#btnFacebook');
   btnFacebook.addEventListener('click', () => {
     loginFacebook()
-      .then(() => {
-        getUserData(currentUser().uid)
+      .then((data) => {
+        getUserData(data.user.uid)
           .then((doc) => {
             if (doc.exists) {
               window.location.hash = '#/home';
             } else {
-              userData(currentUser())
+              userData(data.user)
                 .then(() => {
                   window.location.hash = '#/home';
                 });
@@ -98,12 +98,12 @@ export default () => {
     signIn(email, password)
       .then((data) => {
         if (data.user.emailVerified) {
-          getUserData(currentUser().uid)
+          getUserData(data.user.uid)
             .then((doc) => {
               if (doc.exists) {
                 window.location.hash = '#/home';
               } else {
-                userData(currentUser())
+                userData(data.user)
                   .then(() => {
                     window.location.hash = '#/home';
                   });

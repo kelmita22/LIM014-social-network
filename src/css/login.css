@@ -1,0 +1,100 @@
+.container-logIn{
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+/* BANNER DESTOKP */
+.logoDestokp {
+  display: flex;
+}
+
+/*CONTENEDOR DEL LOGIN*/
+.loginContainer {
+  max-width: 450px;
+  padding: 14% 14% 30% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*CONTENEDOR DEL FORMULARIO DE LOGIN*/
+#containFirst {
+  display: flex;
+  justify-content: center;
+}
+
+/* FORMULARIO INGRESO CORREO - PASSWORD*/
+#loginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#userEmail:focus {
+  border: solid 2px #3b99f7;
+}
+#userPassword:focus {
+  border: solid 2px #3b99f7;
+}
+#userEmail:hover {
+  border: solid 2px #3b99f7;
+}
+#userPassword:hover {
+  border: solid 2px #3b99f7;
+}
+
+/*TEXTOS DE LOGIN*/
+.userPass {
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  color: #4e4187;
+  margin-bottom: 3%;
+}
+
+/*DISEÑO INPUTS Y BOTON*/
+input,
+button {
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  font-size: 1.1em;
+  margin-bottom: 2%;
+}
+
+input {
+  width: 100%;
+  background: #e6e6e6;
+  color: #333;
+  padding: 14px 64px;
+}
+
+.btn-logIn {
+  color: #fff;
+  padding: 14px 64px;
+  margin: 10px auto;
+  font-weight: bold;
+  background: #e67ea8;
+  border-radius: 10px;
+  
+}
+.btn-logIn:hover {
+  background-color: #3b99f7;
+}
+
+/*MEDIDAS LOGOS LINK FACE-GMAIL*/
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+#btnFacebook:hover {
+  background-color: #3b99f7;
+}
+#btnGmail:hover {
+  background-color: #3b99f7;
+}
