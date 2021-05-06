@@ -30,17 +30,3 @@ export const signOut = () => firebase.auth().signOut();
 export const currentUser = (callback) => {
   firebase.auth().onAuthStateChanged((user) => callback(user));
 };
-// firebase.auth().currentUser;
-// Función que escucha el estado de la autenticación
-/*
-function observer() {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in.
-      // home.showHome(user);
-      // ...
-    }
-  });
-}
-*/
-// observer();
