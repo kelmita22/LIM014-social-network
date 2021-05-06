@@ -1,4 +1,3 @@
-// Función para enviar la información del usuario nuevo a firestore
 export const userData = (user) => {
   const db = firebase.firestore();
   let Photo;
