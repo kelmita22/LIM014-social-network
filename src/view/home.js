@@ -147,9 +147,7 @@ export default (dataCurrentUser) => {
       getPost((post) => {
         boxPost.innerHTML = '';
         post.forEach((objPost) => {
-          if (objPost.userId === user.uid) {
-            boxPost.appendChild(itemPost(objPost));
-          }
+          boxPost.appendChild(itemPost(objPost));
         });
       });
     } else {
