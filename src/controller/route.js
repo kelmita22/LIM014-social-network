@@ -18,25 +18,25 @@ const changeView = (route) => {
       break;
     }
     case '#/home': {
-      container.appendChild(components.header());
-      const user = currentUser();
-      getUserData(user.uid)
-        .then((doc) => {
-          container.appendChild(components.home(doc.data()));
-        }).catch((error) => {
-          console.log(error);
-        });
+      currentUser((user) => {
+        getUserData(user.uid)
+          .then((doc) => {
+            container.appendChild(components.home(doc.data()));
+          }).catch((error) => {
+            console.log(error);
+          });
+      });
       break;
     }
     case '#/profile': {
-      container.appendChild(components.header());
-      const user = currentUser();
-      getUserData(user.uid)
-        .then((doc) => {
-          container.appendChild(components.profile(doc.data()));
-        }).catch((error) => {
-          console.log(error);
-        });
+      currentUser((user) => {
+        getUserData(user.uid)
+          .then((doc) => {
+            container.appendChild(components.profile(doc.data()));
+          }).catch((error) => {
+            console.log(error);
+          });
+      });
       break;
     }
     default:

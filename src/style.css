@@ -812,12 +812,20 @@ header {
 }
 .container-home{
   background-color: whitesmoke;
-  width: 90%;
+  /*width: 90%;
   margin: 20px auto;
-  display: grid;
+  /*display: grid;
   grid-gap: 15px;
   grid-template-columns: 1fr 3fr 1fr;
-  grid-template-areas: "profile home aside";
+  grid-template-areas: "profile home aside";*/
+}
+.main-header {
+background-color:#3b99f7;
+}
+#prueba{
+  display: grid;
+    grid-template-columns: 30% 50%;
+    grid-gap: 49px;
 }
 .container-home p{
   margin: 0.5rem 0.5rem;
@@ -831,9 +839,9 @@ main > div,.allpost{
   border-radius: 4px;
 }
 /*----- Left Column ---------*/
-.profile-section{
+/*.profile-section{
   grid-area: profile;
-}
+}*/
 .profile-section i{
   margin-right: 1rem;
   color: #444;
@@ -888,9 +896,9 @@ hr{
 
 /*--------- Middle Column ----------*/
 
-.home-section{
+/*.home-section{
   grid-area: home;
-}
+}*/
 
 .user, .user-post{
   display: flex;
@@ -1374,5 +1382,3 @@ display: none;
 .fa-sign-out-alt:before,.fa-user-circle:before,.fa-home:before,.fa-file-image:before{
   color:#e67ea8;
 }
-
-

@@ -30,12 +30,11 @@ export const updateCurrentUser = (userId, Username, Profesión) => {
   });
 };
 // Función para la creación de los post agrengandolo a la collecion
-export const postAdd = (UserId, Privacy, Publication, URLimg) => {
+export const postAdd = (UserId, Publication, URLimg) => {
   const db = firebase.firestore();
-  return db.collection('SN_Post').add({
+  return db.collection('wartay').add({
     userId: UserId,
     date: new Date().toLocaleString(),
-    privacy: Privacy,
     publication: Publication,
     urlimg: URLimg,
     likes: [],
@@ -44,7 +43,7 @@ export const postAdd = (UserId, Privacy, Publication, URLimg) => {
 // Función para solicitar los datos para el post agregados a la coleccion
 export const getPost = (callback) => {
   const db = firebase.firestore();
-  db.collection('SN_Post').orderBy('date', 'desc')
+  db.collection('wartay').orderBy('date', 'desc')
     .onSnapshot((querySnapshot) => {
       const post = [];
       querySnapshot.forEach((doc) => {
@@ -56,7 +55,7 @@ export const getPost = (callback) => {
 // Función para la creación de los comentarios agrengandolo a la collecion
 export const commentAdd = (UserId, idPost, Comment) => {
   const db = firebase.firestore();
-  return db.collection('SN_Post').doc(idPost).collection('SN_Comment').add({
+  return db.collection('wartay').doc(idPost).collection('SN_Comment').add({
     userId: UserId,
     date: new Date().toLocaleString(),
     comment: Comment,
@@ -65,7 +64,7 @@ export const commentAdd = (UserId, idPost, Comment) => {
 // Función para solicitar los datos para el comentarios agregados a la coleccion
 export const getComment = (idPost, callback) => {
   const db = firebase.firestore();
-  db.collection(`SN_Post/${idPost}/SN_Comment`).orderBy('date', 'desc')
+  db.collection(`wartay/${idPost}/SN_Comment`).orderBy('date', 'desc')
     .onSnapshot((querySnapshot) => {
       const comment = [];
       querySnapshot.forEach((doc) => {
@@ -75,10 +74,10 @@ export const getComment = (idPost, callback) => {
     });
 };
 // Función para eliminar los post
-export const removePost = (idPost) => firebase.firestore().collection('SN_Post').doc(idPost).delete();
+export const removePost = (idPost) => firebase.firestore().collection('wartay').doc(idPost).delete();
 
 // Función para eliminar los comentario
-export const removeComment = (idPost, idComment) => firebase.firestore().collection(`SN_Post/${idPost}/SN_Comment`).doc(idComment).delete();
+export const removeComment = (idPost, idComment) => firebase.firestore().collection(`wartay/${idPost}/SN_Comment`).doc(idComment).delete();
 
 // Función para actualización de foto de perfil
 export const profilePhoto = (userId, photo) => firebase.firestore().collection('SN_Users').doc(userId).update({ photo });
@@ -89,12 +88,12 @@ export const coveragePhoto = (userId, photoCover) => firebase.firestore().collec
 // Función para actualización de post
 export const upgradePost = (idPost, updatePublication) => {
   const db = firebase.firestore();
-  return db.collection('SN_Post').doc(idPost).update({
+  return db.collection('wartay').doc(idPost).update({
     publication: updatePublication,
   });
 };
 // Función para actualización de comentarios
-export const upgradeComment = (idPost, idComment, comment) => firebase.firestore().collection(`SN_Post/${idPost}/SN_Comment`).doc(idComment).update({ comment });
+export const upgradeComment = (idPost, idComment, comment) => firebase.firestore().collection(`wartay/${idPost}/SN_Comment`).doc(idComment).update({ comment });
 
 // Función para actualización de likes
-export const upgradeLike = (id, likes) => firebase.firestore().collection('SN_Post').doc(id).update({ likes });
+export const upgradeLike = (id, likes) => firebase.firestore().collection('wartay').doc(id).update({ likes });

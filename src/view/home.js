@@ -3,20 +3,36 @@ import {
 } from '../js/firestore.js';
 import { imgStorage } from '../js/storage.js';
 import { itemPost } from './post.js';
+import { signOut, currentUser } from '../js/auth.js';
 
 export default (dataCurrentUser) => {
   const viewHome = document.createElement('section');
-  const userId = firebase.auth().currentUser.uid;
-  viewHome.classList.add('container-home');
-  viewHome.innerHTML = `
+  const isUser = (user) => {
+    if (user || user !== null) {
+      viewHome.classList.add('container-home');
+      viewHome.innerHTML = `
+  <section class="main-header">
+<nav>
+<ul class="menu-header">
+  <div id="left-menu-header" class= "box">
+    <li class="home-header"><a href="#/home"><i class="fas fa-home"></i>Home</a></li>
+    <li class="profile-header"><a href="#/profile"><i class="fas fa-user-circle"></i>Profile</a></li>
+  </div>
+    <li class="title-header box"><a href="#/home"><img class="logowar" src="./imageProject/logow.png" width="50px">Wartay</a></li>
+    <li id="log-out-header" class="box"><span id ="btn-singOut"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</span></li>
+</ul>
+</nav>
+<i id="hamburger-menu" class="fas fa-bars hide"></i>
+</section>
+<section id="prueba">
   <!-- columna -->
   <aside class="profile-section">
     <div class="profile">
       <img class="avatar" src="${dataCurrentUser.photo}"/>
       <h2 id="name"> ${dataCurrentUser.username}</h2>
+      <h2 id="name">${dataCurrentUser.profesión}</p> 
     </div>
   </aside>
-
   <!-- media columna -->
   <main class="home-section">
     <!-- Post -->
@@ -42,6 +58,7 @@ export default (dataCurrentUser) => {
       </div>
     </div>
     <section id="container-post"></section>
+    </section>
   </main>
   <section class="modal-progress">
     <div class="progress">
@@ -50,75 +67,96 @@ export default (dataCurrentUser) => {
     </div>
   </section>
   `;
+      const hamburgerBotton = viewHome.querySelector('#hamburger-menu');
+      const homeNav = viewHome.querySelector('#left-menu-header');
+      const singOut = viewHome.querySelector('#log-out-header');
+      hamburgerBotton.addEventListener('click', () => {
+        homeNav.classList.toggle('active');
+        singOut.classList.toggle('active');
+      });
 
-  const postImg = viewHome.querySelector('#post-img');
-  const removeImg = viewHome.querySelector('#remove-img');
-  const uploadImg = viewHome.querySelector('#upload-img');
+      // Función para cerrar sesión
+      const btnSignOut = viewHome.querySelector('#btn-singOut');
+      btnSignOut.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.hash = '';
+        signOut();
+        /* .then(() => {
+      }); */
+      });
+      const imagePost = viewHome.querySelector('#post-img');
+      const imageDelete = viewHome.querySelector('#remove-img');
+      const uploadImg = viewHome.querySelector('#upload-img');
 
-  // Función para cargar imagen para publicar
-  uploadImg.addEventListener('change', (e) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      postImg.src = reader.result;
-    };
-    removeImg.removeAttribute('style');
-  });
-  // Eliminar imagen del post
-  removeImg.addEventListener('click', () => {
-    postImg.src = '';
-    uploadImg.value = '';
-    removeImg.style.display = 'none';
-  });
-  // Guardar post en firestore
-  const formPost = viewHome.querySelector('#form-post');
-  formPost.addEventListener('submit', (e) => {
-    e.preventDefault();
-    postImg.src = '';
-    removeImg.style.display = 'none';
-    const fileImg = e.target.closest('#form-post').querySelector('input').files[0];
-    const uploader = viewHome.querySelector('#uploader');
-    const privacy = viewHome.querySelector('#privacy-option').value;
-    const textPost = viewHome.querySelector('.text-newpost');
-    const modalProgress = viewHome.querySelector('.modal-progress');
-    const messageProgress = viewHome.querySelector('#messageProgress');
+      // Función para cargar imagen para publicar
+      uploadImg.addEventListener('change', (e) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(e.target.files[0]);
+        reader.onload = () => {
+          imagePost.src = reader.result;
+        };
+        imageDelete.removeAttribute('style');
+      });
+      // Eliminar imagen del post
+      imageDelete.addEventListener('click', () => {
+        imagePost.src = '';
+        uploadImg.value = '';
+        imageDelete.style.display = 'none';
+      });
+      // Guardar post en firestore
+      const savePost = viewHome.querySelector('#form-post');
+      savePost.addEventListener('submit', (e) => {
+        e.preventDefault();
+        imagePost.src = '';
+        imageDelete.style.display = 'none';
+        const fileImage = e.target.closest('#form-post').querySelector('input').files[0];
+        const load = viewHome.querySelector('#uploader');
+        const postText = viewHome.querySelector('.text-newpost');
+        const enterModal = viewHome.querySelector('.modal-progress');
+        const textModal = viewHome.querySelector('#messageProgress');
 
-    if (fileImg) {
-      const uploadTask = imgStorage(fileImg, 'SN-imgPost');
-      uploadTask.on('state_changed', (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        modalProgress.classList.add('showModal');
-        messageProgress.textContent = 'Tu publicación fue completada exitosamente';
-        uploader.value = progress;
-      },
-      () => {
-      }, () => {
-        uploadTask.snapshot.ref.getDownloadURL()
-          .then((downloadURL) => {
-            postAdd(userId, privacy, textPost.value, downloadURL)
-              .then(() => {
-                modalProgress.classList.remove('showModal');
-                formPost.reset();
+        if (fileImage) {
+          const uploadTask = imgStorage(fileImage, 'SN-imgPost');
+          uploadTask.on('state_changed', (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            enterModal.classList.add('showModal');
+            textModal.textContent = 'Tu publicación fue completada exitosamente';
+            load.value = progress;
+          },
+          () => {
+          }, () => {
+            uploadTask.snapshot.ref.getDownloadURL()
+              .then((downloadURL) => {
+                postAdd(user.uid, postText.value, downloadURL)
+                  .then(() => {
+                    enterModal.classList.remove('showModal');
+                    savePost.reset();
+                  });
               });
           });
+        } else {
+          postAdd(user.uid, postText.value, '')
+            .then(() => {
+              enterModal.classList.remove('showModal');
+              savePost.reset();
+            });
+        }
+      });
+      /* -------------------------- agregar post----------------------*/
+      const boxPost = viewHome.querySelector('#container-post');
+      getPost((post) => {
+        boxPost.innerHTML = '';
+        post.forEach((objPost) => {
+          if (objPost.userId === user.uid) {
+            boxPost.appendChild(itemPost(objPost));
+          }
+        });
       });
     } else {
-      postAdd(userId, privacy, textPost.value, '')
-        .then(() => {
-          modalProgress.classList.remove('showModal');
-          formPost.reset();
-        });
+      window.location.hash = '#/';
     }
-  });
-  /* -------------------------- agregar post----------------------*/
-  const containerPost = viewHome.querySelector('#container-post');
-  getPost((post) => {
-    containerPost.innerHTML = '';
-    post.forEach((objPost) => {
-      if (objPost.privacy === 'public' || (objPost.privacy === 'private' && objPost.userId === userId)) {
-        containerPost.appendChild(itemPost(objPost));
-      }
-    });
-  });
+  };
+
+  currentUser(isUser);
   return viewHome;
 };

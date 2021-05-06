@@ -8,6 +8,7 @@ export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return auth.signInWithPopup(provider);
 };
+
 export const loginFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider);
@@ -26,4 +27,20 @@ export const emailVerification = () => {
 export const signOut = () => firebase.auth().signOut();
 
 // Administración de usuarios Firebase
-export const currentUser = () => firebase.auth().currentUser;
+export const currentUser = (callback) => {
+  firebase.auth().onAuthStateChanged((user) => callback(user));
+};
+// firebase.auth().currentUser;
+// Función que escucha el estado de la autenticación
+/*
+function observer() {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      // User is signed in.
+      // home.showHome(user);
+      // ...
+    }
+  });
+}
+*/
+// observer();
