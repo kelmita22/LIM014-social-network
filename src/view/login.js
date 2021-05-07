@@ -6,12 +6,12 @@ import { userData, getUserData } from '../js/firestore.js';
 export default () => {
   const viewLogin = document.createElement('section');
   viewLogin.classList.add('container-logIn');
-  viewLogin.innerHTML = `<section class="logoDestokp">
-  <img src="./imageProject/logoDestok.jpg" alt="logoDestokp" />
-</section>
-<section id="containFirst">
-  <div class="loginContainer">
-    <!-- Logo -->
+  viewLogin.innerHTML = `
+    <section class="logoDestokp">
+      <img src="./imageProject/logoDestok.jpg" alt="logoDestokp" />
+    </section>
+    <section id="containFirst">
+      <section class="loginContainer">
     <section>
       <img id="imagLogo"
         src="./imageProject/iconWartay.png"
@@ -19,37 +19,26 @@ export default () => {
         width="320"
       />
     </section>
-    <!-- Texto inicio -->
-    <p class="userPass">!Iniciar sesión en Wartay!</p>
-    <!-- Inputs de ingreso -->
-    <form id="loginForm">
-    <div>
-        <input id="userEmail" type="email" placeholder="Email" required />
-      </div>
-      <div>
-        <input id="userPassword" type="password" placeholder="Contraseña" required />
-      </div>
-      <!-- Botón Login -->
+      <p class="userPass">!Iniciar sesión en Wartay!</p>
+      <form id="loginForm">
+    <section>
+      <input id="userEmail" type="email" placeholder="Email" required />
+    </section>
+    <section>
+      <input id="userPassword" type="password" placeholder="Contraseña" required />
+    </section>
       <button type="submit" class="btn-logIn">Login</a></button>
       <p id = "error-message"></p>
-      <!-- Ingreso con Facebook o Gmail -->
       <p class="userPass">o bien ingresa con...</p>
-      <section class="links">
-        <a href="#/"id="btnFacebook"
-          ><img src="./imageProject/f.png" alt="Facebook" width="25" />
-        </a>
-        <a href="#/"id="btnGmail"
-          ><img src="./imageProject/g.png" alt="Gmail" width="22" />
-        </a>
+    <section class="links">
+      <a href="#/"id="btnFacebook"><img src="./imageProject/f.png" alt="Facebook" width="25" /></a>
+      <a href="#/"id="btnGmail"><img src="./imageProject/g.png" alt="Gmail" width="22" /></a>
       </section>
-      <!-- Registro de cuenta -->
-      <p class="userPass">
-        ¿No tienes cuenta?<a class="checkIn" href="#/registrate">Registrate </a>
-      </p>
-    </form>
-  </div>
-</section>`;
-  /* --------------------------------------loguearse------------------------------- */
+      <p class="userPass">¿No tienes cuenta?<a class="checkIn" href="#/registrate">Registrate </a></p>
+      </form>
+    </section>
+  </section>`;
+  // Login
   const btnNewAccount = viewLogin.querySelector('.checkIn');
   btnNewAccount.addEventListener('click', () => { window.location.hash = '#/registrate'; });
   // Función para registarse con Gmail
@@ -70,7 +59,7 @@ export default () => {
           });
       });
   });
-  // Funció para registarse con Facebook
+  // Función para registarse con Facebook
   const btnFacebook = viewLogin.querySelector('#btnFacebook');
   btnFacebook.addEventListener('click', () => {
     loginFacebook()
@@ -88,7 +77,7 @@ export default () => {
           });
       });
   });
-  /* ----------------credenciales de inicio de sesión-------------- */
+  // Función para verificar credenciales
   const signInForm = viewLogin.querySelector('.btn-logIn');
   signInForm.addEventListener('click', (e) => {
     e.preventDefault();

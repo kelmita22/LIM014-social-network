@@ -11,7 +11,7 @@ export default () => {
       </section>
     </section>
   </section>
-</section>
+</section> 
         `;
 
   const divElemt = document.createElement('div');
