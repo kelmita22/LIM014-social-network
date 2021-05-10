@@ -5,7 +5,7 @@ export const validateEmail = (email) => {
   return regEx.test(email);
 };
 
-// funcion que valida si los datos de usuario ne estan vacios y email es valido
+// funcion que valida si los datos de usuario no estan vacios y email es valido
 export const validateUser = (userEmail, userPass) => {
   if (
     !validateEmail(userEmail)
