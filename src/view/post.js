@@ -17,7 +17,7 @@ export const itemPost = (objPost) => {
       postElement.innerHTML = `
   <div class="mainpost">
   <div class="user-post">
-    <div class="${(userId !== objPost.userId) ? 'hide' : 'show menu-post'}">
+    <div class="menu-post">
       <i class="fas fa-ellipsis-v btn-menu-post"></i>
       <ul id="menu-post-content" class="menu-post-content">
         <li id="edit-post"><i class="fas fa-edit select"></i> Edit</li>
@@ -34,10 +34,6 @@ export const itemPost = (objPost) => {
         <i class="fas fa-map-marker-alt"></i> &nbsp <span id="countryTooltip"></span>
       </span>
     </p>
-    <select id="privacy-option" class="${(userId === objPost.userId) ? 'show fa' : 'hide'}">
-      <option class="fa" value="public" ${(objPost.privacy === 'public') ? 'selected' : ''} title = "Public">&#xf57d; </option>
-      <option class="fa" value="private" ${(objPost.privacy === 'private') ? 'selected' : ''} title = "Private">&#xf023; </option>
-    </select>
     <p class="time-post">${objPost.date}</p>
   </div>       
   <div class="content-post">
@@ -82,12 +78,12 @@ export const itemPost = (objPost) => {
       /* ---------------- Menu despegable --------------------------*/
       const btnMenu = postElement.querySelector('.btn-menu-post');
       btnMenu.addEventListener('click', () => {
-        postElement.querySelector('#menu-post-content').classList.toggle('show');
+        postElement.querySelector('#menu-post-content').style.display = 'block';
       });
       // cerrar con click por fuera
       window.addEventListener('click', (e) => {
         if (e.target !== btnMenu) {
-          postElement.querySelector('#menu-post-content').classList.remove('show');
+          postElement.querySelector('#menu-post-content').style.display = 'none';
         }
       });
       /* -------------- editar el menu -------------------*/
@@ -97,8 +93,12 @@ export const itemPost = (objPost) => {
       // const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
       // editar post
       editPost.addEventListener('click', () => {
-        postElement.querySelector('.edit-text-post').style.display = 'block';
-        postElement.querySelector('.text-post').classList.add('hide');
+        if (userId === objPost.userId) {
+          postElement.querySelector('.edit-text-post').style.display = 'block';
+          postElement.querySelector('.text-post').classList.add('hide');
+        } else {
+          alert('No puedes modificar post de otros usuarios');
+        }
       });
 
       // actualizar post
@@ -110,6 +110,8 @@ export const itemPost = (objPost) => {
         .addEventListener('click', () => {
           if (userId === objPost.userId) {
             removePost(objPost.id);
+          } else {
+            alert('No puedes eliminar post de otros usuarios');
           }
         });
       // actualizarlikes
