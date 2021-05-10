@@ -89,6 +89,13 @@ export default (dataCurrentUser) => {
   </div>
 </section>
 `;
+      const hamburgerBotton = viewProfile.querySelector('#hamburger-menu');
+      const homeNav = viewProfile.querySelector('#left-menu-header');
+      const singOut = viewProfile.querySelector('#log-out-header');
+      hamburgerBotton.addEventListener('click', () => {
+        homeNav.classList.toggle('active');
+        singOut.classList.toggle('active');
+      });
 
       const selectPhotoProfile = viewProfile.querySelector('#select-photo-profile');
       selectPhotoProfile.addEventListener('change', (e) => {
