@@ -9,6 +9,10 @@ import {
   commentAdd,
   getComment,
   upgradePost,
+  removePost,
+  removeComment,
+  profilePhoto,
+  coveragePhoto,
 } from '../src/js/firestore';
 // Collection Firebase mock
 const fixtureData = {
@@ -32,6 +36,18 @@ const fixtureData = {
           publication: 'Publicaciones',
           urlimg: '',
           userId: '001',
+
+          __collection__: {
+            SN_Comment: {
+              _doc_: {
+                id_001: {
+                  comment: 'Hola chicos',
+                  date: '',
+                  userId: '001',
+                },
+              },
+            },
+          },
 
         },
       },
@@ -102,8 +118,8 @@ describe('Función postAdd', () => {
   it('Deberia crear un post', (done) => postAdd('uid_001', 'Kelly', '', '', '')
     .then(() => getPost(
       (data) => {
-        const result = data.find((post) => post.publication === 'Nueva publicación');
-        expect(result.publication).toBe('Nueva publicación');
+        const result = data.find((post) => post.publication === 'Publicaciones');
+        expect(result.publication).toBe('Publicaciones');
         done();
       },
     )));
@@ -135,4 +151,44 @@ describe('Función upgradePost', () => {
         done();
       },
     )));
+});
+// Función removePost
+describe('Función removePost', () => {
+  it('Deberia ser una función', () => {
+    expect(typeof removePost).toBe('function');
+  });
+  it('Debería poder borrar el post', () => removePost()
+    .then((user) => {
+      expect(user).toBe(undefined);
+    }));
+});
+// Función removeComment
+describe('Función removeComment', () => {
+  it('Deberia ser una función', () => {
+    expect(typeof removeComment).toBe('function');
+  });
+  it('Debería poder borrar el comentario', () => removeComment()
+    .then((user) => {
+      expect(user).toBe(undefined);
+    }));
+});
+// Función profilePhoto
+describe('Función profilePhoto', () => {
+  it('Deberia ser una función', () => {
+    expect(typeof profilePhoto).toBe('function');
+  });
+  it('Debería poder actualizar de foto de perfil', () => profilePhoto('uid_002', './imageProject/avatar.png')
+    .then((user) => {
+      expect(user).toBe(undefined);
+    }));
+});
+// Función coveragePhoto
+describe('Función coveragePhoto', () => {
+  it('Deberia ser una función', () => {
+    expect(typeof coveragePhoto).toBe('function');
+  });
+  it('Debería poder actualizar de foto del cover', () => coveragePhoto('uid_002', './imageProject/avatar.png')
+    .then((user) => {
+      expect(user).toBe(undefined);
+    }));
 });
