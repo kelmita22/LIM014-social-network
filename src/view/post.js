@@ -103,7 +103,11 @@ export const itemPost = (objPost) => {
 
       // actualizar post
       btnSaveEdit.addEventListener('click', () => {
-        upgradePost(objPost.id, editPublication.value);
+        if (editPublication.value !== '') {
+          upgradePost(objPost.id, editPublication.value);
+        } else {
+          alert('Espacio vacio');
+        }
       });
       // borrar post
       postElement.querySelector(`#delete-post-${objPost.id}`)
