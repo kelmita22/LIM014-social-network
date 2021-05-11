@@ -40,6 +40,9 @@ header {
 .imgClose {
   width: 17%;
 }
+main.home-section {
+  margin-top: 2%;
+}
 .container-home{
   background-color: whitesmoke;
   /*width: 90%;
@@ -412,4 +415,8 @@ background-size: 35px 20px, 100% 100%, 100% 100%;
   grid-area: aside;
   text-align: center
 }
-
+@media (min-width: 320px) and (max-width: 425px){
+  #prueba{
+    display: contents;
+  }
+}
