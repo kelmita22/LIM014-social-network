@@ -96,6 +96,11 @@ object-fit: cover;
   text-align: justify;
   font-size: 15px;
 }
+
+#reactions{
+  display: grid;
+    justify-content: flex-end;
+}
 .edit-text-post{
   display: none;
 }
@@ -104,10 +109,7 @@ object-fit: cover;
   display: block;
   margin: 0.3rem auto 1rem;
 }
-#likes{
-  display: flex;
-  justify-content: flex-end;
-}
+
 .count-like{
   position: relative;
   color: #3b99f7;

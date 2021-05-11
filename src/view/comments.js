@@ -32,6 +32,12 @@ export const itemComment = (objComment, idPost) => {
         <p class="time-comment">${objComment.date}</p>
       </section>
       </section>
+      <section class="modal-progress">
+<div class="alert">
+  <p id="messageAlert"></p>
+  <i class="fas fa-times-circle" id="closeModal"></i>
+</div>
+</section>
       
   `;
       getUserData(objComment.userId)
@@ -59,7 +65,14 @@ export const itemComment = (objComment, idPost) => {
         if (userId === objComment.userId) {
           coments.querySelector('.edit-comment-text-btns').style.display = 'block';
         } else {
-          alert('No puedes modificar post de otros usuarios');
+          const enterModal = coments.querySelector('.modal-progress');
+          const textModal = coments.querySelector('#messageAlert');
+          enterModal.classList.add('showModal');
+          textModal.textContent = 'No puedes editar el comentario de otros usuario';
+          const closeModal = coments.querySelector('#closeModal');
+          closeModal.addEventListener('click', () => {
+            enterModal.classList.remove('showModal');
+          });
         }
       });
       // cancelar post
@@ -77,7 +90,14 @@ export const itemComment = (objComment, idPost) => {
         if (userId === objComment.userId) {
           removeComment(idPost, objComment.id);
         } else {
-          alert('No puedes modificar post de otros usuarios');
+          const enterModal = coments.querySelector('.modal-progress');
+          const textModal = coments.querySelector('#messageAlert');
+          enterModal.classList.add('showModal');
+          textModal.textContent = 'No puedes eliminar el comentario de otros usuario';
+          const closeModal = coments.querySelector('#closeModal');
+          closeModal.addEventListener('click', () => {
+            enterModal.classList.remove('showModal');
+          });
         }
       });
     } else {

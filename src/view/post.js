@@ -121,7 +121,14 @@ export const itemPost = (objPost) => {
         if (editPublication.value !== '') {
           upgradePost(objPost.id, editPublication.value);
         } else {
-          alert('Espacio vacio');
+          const enterModal = postElement.querySelector('.modal-progress');
+          const textModal = postElement.querySelector('#messageAlert');
+          enterModal.classList.add('showModal');
+          textModal.textContent = 'Espacio Vacío';
+          const closeModal = postElement.querySelector('#closeModal');
+          closeModal.addEventListener('click', () => {
+            enterModal.classList.remove('showModal');
+          });
         }
       });
       // cancelar post

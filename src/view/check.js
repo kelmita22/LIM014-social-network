@@ -63,6 +63,12 @@ export default () => {
   <img src="imageProject/logoD.png" class="image" alt="" />
 </section>
 </section>
+</section>
+<section class="modal-progress">
+<div class="alert">
+  <p id="messageAlert"></p>
+  <i class="fas fa-times-circle" id="closeModal"></i>
+</div>
 </section>`;
   // Evento para regresar a Login
   const signInBtn = viewCheck.querySelector('#signInBtn');
