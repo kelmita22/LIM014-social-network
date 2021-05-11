@@ -56,12 +56,12 @@ Encuestas realizadas:
 
 > ¿Cuáles son datos más relevantes que quieren ver en la interfaz y porqué?
 
-![Screenshot](..src/imageReadme/encuesta3.jpeg)
-![Screenshot](..src/imageReadme/encuesta4.jpeg)
-![Screenshot](..src/imageReadme/encuesta5.jpeg)
-![Screenshot](..src/imageReadme/encuesta6.jpeg)
-![Screenshot](..src/imageReadme/encuesta1.jpeg)
-![Screenshot](..src/imageReadme/encuesta2.jpeg)
+![Screenshot](./imageReadme/encuesta3.jpeg)
+![Screenshot](./imageReadme/encuesta4.jpeg)
+![Screenshot](./imageReadme/encuesta5.jpeg)
+![Screenshot](./imageReadme/encuesta6.jpeg)
+![Screenshot](./imageReadme/encuesta1.jpeg)
+![Screenshot](./imageReadme/encuesta2.jpeg)
 
 > ¿Cuando utilizarían el producto?
 
@@ -71,8 +71,8 @@ Antes y después de clases como refuerzo y guía.
 
 Se realizo un test a 5 personas sobre la usabilidad de la red social y su diseño, su feedback fue el siguiente:
 
-![Screenshot](.src/imageReadme/usabilidad.jpeg)
-![Screenshot](.src/imageReadme/usabilidad2.jpeg)
+![Screenshot](./imageReadme/usabilidad.jpeg)
+![Screenshot](./imageReadme/usabilidad2.jpeg)
 
 ### 6. Prototipo Final:
 
