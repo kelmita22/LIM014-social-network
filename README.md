@@ -25,7 +25,7 @@ Construir una Red Social en la que cualquier usuario pueda crear una cuenta de a
 Wartay (Fusión de Warma =niño y Watay = educar en quechua) es una red social educativa dirigida a padres, profesores y alumnos del nivel primario, en la cual tendrán la opción de compartir y crear información en diversas áreas de estudio para reforzar el aprendizaje de los estudiantes.
 
 <p align="center"><strong>Wartay</strong></p>
-<p align="center"><a href="logo wartay"><img src="imageReadme/logoWartay.jpeg"></a><br>
+<p align="center"><a href="logo wartay"><img src="imageReadme/iconWartayy.png"></a><br>
 <strong>Logo Red Social Educativa<strong><p>
 
 ### 4. Investigación del PO (Público Objetivo)
