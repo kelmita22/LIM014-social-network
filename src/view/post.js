@@ -42,14 +42,17 @@ export const itemPost = (objPost) => {
       <textarea class="edit-text">${objPost.publication}</textarea>
       <div class = "edit-text-btns">
         <button type="button" class="btn-save-edit-${objPost.id}">Save</button>
+        <button type="button" class="btn-cancel-edit">Cancel</button>
       </div>
     </div>
     <img id="post-img" class="post-img" src='${objPost.urlimg}'/>
     <div class="like-comment-container">
+    <section id="reactions">
       <p id="likes" class="${(reactionCounter === 0) ? 'hide' : 'count-like'}" > ${reactionCounter} reactions
       </p>
       <p id = "count-comment" class="${(reactionCounter === 0) ? 'count-comment' : 'count-comment-right'}"></p>     
       <hr>
+      </section>
       <button type="button" id="btn-like" class="btn-like-plane ${(objPost.likes.indexOf(userId) === -1) ? 'inactive-reaction' : 'active-reaction'}"><i class="fa fa-thumbs-up"></i> Like </button>
       <button type="button" id="btn-comment" class="btn-comment"><i class="fa fa-comment"></i>Comment </button>
     </div>
@@ -62,6 +65,12 @@ export const itemPost = (objPost) => {
     </section>  
   </div>
 </div>
+<section class="modal-progress">
+<div class="alert">
+  <p id="messageAlert"></p>
+  <i class="fas fa-times-circle" id="closeModal"></i>
+</div>
+</section>
 `;
       getUserData(objPost.userId)
         .then((doc) => {
@@ -90,14 +99,20 @@ export const itemPost = (objPost) => {
       const editPost = postElement.querySelector('#edit-post');
       const editPublication = postElement.querySelector('.edit-text');
       const btnSaveEdit = postElement.querySelector(`.btn-save-edit-${objPost.id}`);
-      // const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
+      const btnCancelEdit = postElement.querySelector('.btn-cancel-edit');
       // editar post
       editPost.addEventListener('click', () => {
         if (userId === objPost.userId) {
           postElement.querySelector('.edit-text-post').style.display = 'block';
-          postElement.querySelector('.text-post').classList.add('hide');
         } else {
-          alert('No puedes modificar post de otros usuarios');
+          const enterModal = postElement.querySelector('.modal-progress');
+          const textModal = postElement.querySelector('#messageAlert');
+          enterModal.classList.add('showModal');
+          textModal.textContent = 'No puedes editar un post de otro usuario';
+          const closeModal = postElement.querySelector('#closeModal');
+          closeModal.addEventListener('click', () => {
+            enterModal.classList.remove('showModal');
+          });
         }
       });
 
@@ -109,13 +124,26 @@ export const itemPost = (objPost) => {
           alert('Espacio vacio');
         }
       });
+      // cancelar post
+      btnCancelEdit.addEventListener('click', () => {
+        postElement.querySelector('.edit-text-post').style.display = 'none';
+        editPublication.value = objPost.publication;
+      });
+
       // borrar post
       postElement.querySelector(`#delete-post-${objPost.id}`)
         .addEventListener('click', () => {
           if (userId === objPost.userId) {
             removePost(objPost.id);
           } else {
-            alert('No puedes eliminar post de otros usuarios');
+            const enterModal = postElement.querySelector('.modal-progress');
+            const textModal = postElement.querySelector('#messageAlert');
+            enterModal.classList.add('showModal');
+            textModal.textContent = 'No puedes eliminar un post de otro usuario';
+            const closeModal = postElement.querySelector('#closeModal');
+            closeModal.addEventListener('click', () => {
+              enterModal.classList.remove('showModal');
+            });
           }
         });
       // actualizarlikes
