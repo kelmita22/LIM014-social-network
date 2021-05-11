@@ -56,7 +56,7 @@ Encuestas realizadas:
 
 > ¿Cuáles son datos más relevantes que quieren ver en la interfaz y porqué?
 
-![Screenshot](.src/imageReadme/encuesta3.jpeg)
+![Screenshot](./imageReadme/encuesta3.jpeg)
 ![Screenshot](.src/imageReadme/encuesta4.jpeg)
 ![Screenshot](.src/imageReadme/encuesta5.jpeg)
 ![Screenshot](.src/imageReadme/encuesta6.jpeg)
