@@ -326,14 +326,7 @@ header {
   /* left: 50%; */
   margin-left: -60px;
 }
-/*.fa-file-image:hover .tooltiptext,
-.fa-github:hover .tooltiptext,
-.fa-edit:hover .tooltiptext,
-.name:hover .tooltiptext,
-.btn-like:hover .tooltiptext,
-.count-like:hover .tooltiptext {
-  visibility: visible;
-} */
+
 .count-like .tooltiptext{
   left: 50%;
 }
