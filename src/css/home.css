@@ -367,6 +367,7 @@ main.home-section {
   justify-content: center;
 }
 .modal-progress{
+  z-index: 9;
   background: rgba(252, 252, 252, 0.5);
 }
 #uploader{
