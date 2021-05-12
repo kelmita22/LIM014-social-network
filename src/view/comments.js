@@ -32,8 +32,7 @@ export const itemComment = (objComment, idPost) => {
         <p class="time-comment">${objComment.date}</p>
       </section>
       </section>
-      
-
+      <p class="col-12 error" id="lastname-error"></p>
   `;
       getUserData(objComment.userId)
         .then((doc) => {
@@ -60,7 +59,10 @@ export const itemComment = (objComment, idPost) => {
         if (userId === objComment.userId) {
           coments.querySelector('.edit-comment-text-btns').style.display = 'block';
         } else {
-          alert('No puedes modificar post de otros usuarios');
+          coments.querySelector('#lastname-error').innerHTML = 'No puedes editar un comentario de otro usuario';
+          setTimeout(() => {
+            coments.querySelector('#lastname-error').textContent = '';
+          }, 5000);
         }
       });
       // cancelar post
@@ -78,7 +80,10 @@ export const itemComment = (objComment, idPost) => {
         if (userId === objComment.userId) {
           removeComment(idPost, objComment.id);
         } else {
-          alert('No puedes modificar post de otros usuarios');
+          coments.querySelector('#lastname-error').innerHTML = 'No puedes borrar un comentario de otro usuario';
+          setTimeout(() => {
+            coments.querySelector('#lastname-error').textContent = '';
+          }, 5000);
         }
       });
     } else {
@@ -89,3 +94,4 @@ export const itemComment = (objComment, idPost) => {
   currentUser(isUser);
   return coments;
 };
+

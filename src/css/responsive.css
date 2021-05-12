@@ -4,6 +4,19 @@
     width: 150%;
     height: 79%;
 }
+.profile{
+  display: none;
+}
+.main > div{
+  margin: 6px -18px 6px -111px;
+  height: 10%;
+}
+#prueba{
+  display: contents;
+}
+.content-newpost textarea{
+  margin-top: -25%;
+}
 }
 @media (min-width: 320px) and (max-width: 767px) {
   body {

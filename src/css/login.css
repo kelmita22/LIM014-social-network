@@ -255,6 +255,12 @@ form.sign-up-form {
 .container.sign-up-mode .left-panel {
   pointer-events: none;
 }
+@media (max-width: 1500px) {
+  .formRegister {
+    padding: 5px;
+    width: 400px;
+
+}
 
 @media (max-width: 870px) {
   .sign-in-form{
@@ -277,7 +283,7 @@ form.sign-up-form {
   .signin-signup,
   .container.sign-up-mode .signin-signup {
     left: 50%;
-    
+    margin-top: 3%;    
   }
 
   .panels-container {
@@ -295,6 +301,7 @@ form.sign-up-form {
 
   .left-panel {
     grid-row: 1 / 2;
+    margin-top: -7%;
   }
 
   .image {
@@ -329,7 +336,7 @@ form.sign-up-form {
     height: 1500px;
     transform: translateX(-50%);
     left: 30%;
-    bottom: 68%;
+    bottom: 80%;
     right: initial;
     top: initial;
     transition: 2s ease-in-out;
@@ -364,6 +371,9 @@ form.sign-up-form {
 }
 @media screen and (max-width: 870px) and (min-width: 768px) 
 {
+  #signup{
+    top: 109%;
+  }
 .logo{
   width: 33%;
 }
@@ -375,7 +385,6 @@ form.sign-up-form {
 .input-field input{
   font-size: 0.7rem;
 }
-
 }
 
 @media (max-width: 570px) {
@@ -421,5 +430,5 @@ form.sign-up-form {
     font-size: 0.7rem;
   }
   
-  
+}
 }

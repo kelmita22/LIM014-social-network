@@ -40,6 +40,9 @@ header {
 .imgClose {
   width: 17%;
 }
+main.home-section {
+  margin-top: 2%;
+}
 .container-home{
   background-color: whitesmoke;
   /*width: 90%;
@@ -326,14 +329,7 @@ header {
   /* left: 50%; */
   margin-left: -60px;
 }
-/*.fa-file-image:hover .tooltiptext,
-.fa-github:hover .tooltiptext,
-.fa-edit:hover .tooltiptext,
-.name:hover .tooltiptext,
-.btn-like:hover .tooltiptext,
-.count-like:hover .tooltiptext {
-  visibility: visible;
-} */
+
 .count-like .tooltiptext{
   left: 50%;
 }
@@ -371,6 +367,7 @@ header {
   justify-content: center;
 }
 .modal-progress{
+  z-index: 9;
   background: rgba(252, 252, 252, 0.5);
 }
 #uploader{
@@ -419,4 +416,8 @@ background-size: 35px 20px, 100% 100%, 100% 100%;
   grid-area: aside;
   text-align: center
 }
-
+@media (min-width: 320px) and (max-width: 425px){
+  #prueba{
+    display: contents;
+  }
+}
