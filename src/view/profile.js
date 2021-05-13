@@ -83,10 +83,14 @@ export default (dataCurrentUser) => {
   </section>
 </section>
 <section class="modal-progress">
-  <div class="progress">
-    <progress value="0" max="100" id="uploader">0%</progress>
-    <p id="messageProgress">0%</p>
-  </div>
+<div class="alert">
+  <p id="messageAlert"></p>
+  <section class="directionRow">
+  <progress value="0" max="100" id="uploader">0%</progress>
+  <i class="fas fa-times-circle" id="closeModal"></i>
+  <i class="fas fa-check" id="deleteModal"></i>
+  </section>
+</div>
 </section>
 `;
 
@@ -109,14 +113,16 @@ export default (dataCurrentUser) => {
       selectPhotoProfile.addEventListener('change', (e) => {
         const file = e.target.files[0];
         const uploadTask = imgStorage(file, 'SN-imgProfile');
-        const messageProgress = viewProfile.querySelector('#messageProgress');
-        const modalProgress = viewProfile.querySelector('.modal-progress');
+        const enterModal = viewProfile.querySelector('.modal-progress');
+        const textModal = viewProfile.querySelector('#messageAlert');
         const uploader = viewProfile.querySelector('#uploader');
         uploadTask.on('state_changed', (snapshot) => {
           // Handle progress
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          modalProgress.classList.add('showModal');
-          messageProgress.textContent = 'El cambio de foto se ha actualizado correctamente';
+          enterModal.classList.add('showModal');
+          viewProfile.querySelector('#closeModal').style.display = 'none';
+          viewProfile.querySelector('#uploader').style.display = 'block';
+          textModal.textContent = 'Tu publicación fue completada exitosamente';
           uploader.value = progress;
         }, () => {
           // fallo al cargar
@@ -134,14 +140,16 @@ export default (dataCurrentUser) => {
       selectCoverPage.addEventListener('change', (e) => {
         const file = e.target.files[0];
         const uploadTask = imgStorage(file, 'SN-imgCover');
-        const messageProgress = viewProfile.querySelector('#messageProgress');
-        const modalProgress = viewProfile.querySelector('.modal-progress');
+        const enterModal = viewProfile.querySelector('.modal-progress');
+        const textModal = viewProfile.querySelector('#messageAlert');
         const uploader = viewProfile.querySelector('#uploader');
         uploadTask.on('state_changed', (snapshot) => {
           // Handle progress
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          modalProgress.classList.add('showModal');
-          messageProgress.textContent = 'El cambio de foto se ha actualizado correctamente';
+          enterModal.classList.add('showModal');
+          viewProfile.querySelector('#closeModal').style.display = 'none';
+          viewProfile.querySelector('#uploader').style.display = 'block';
+          textModal.textContent = 'Tu publicación fue completada exitosamente';
           uploader.value = progress;
         }, () => {
           // fallo de carga

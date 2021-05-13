@@ -60,10 +60,14 @@ export default (dataCurrentUser) => {
     </section>
   </main>
   <section class="modal-progress">
-    <div class="progress">
-      <progress value="0" max="100" id="uploader">0%</progress>
-      <p id="messageProgress">0%</p>
-    </div>
+  <div class="alert">
+    <p id="messageAlert"></p>
+    <section class="directionRow">
+    <progress value="0" max="100" id="uploader">0%</progress>
+    <i class="fas fa-times-circle" id="closeModal"></i>
+    <i class="fas fa-check" id="deleteModal"></i>
+    </section>
+  </div>
   </section>
   `;
       const hamburgerBotton = viewHome.querySelector('#hamburger-menu');
@@ -110,13 +114,15 @@ export default (dataCurrentUser) => {
         const load = viewHome.querySelector('#uploader');
         const postText = viewHome.querySelector('.text-newpost');
         const enterModal = viewHome.querySelector('.modal-progress');
-        const textModal = viewHome.querySelector('#messageProgress');
+        const textModal = viewHome.querySelector('#messageAlert');
 
         if (fileImage) {
           const uploadTask = imgStorage(fileImage, 'SN-imgPost');
           uploadTask.on('state_changed', (snapshot) => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
             enterModal.classList.add('showModal');
+            viewHome.querySelector('#closeModal').style.display = 'none';
+            viewHome.querySelector('#uploader').style.display = 'block';
             textModal.textContent = 'Tu publicación fue completada exitosamente';
             load.value = progress;
           },

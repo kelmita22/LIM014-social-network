@@ -33,6 +33,16 @@ export const itemComment = (objComment, idPost) => {
       </section>
       </section>
       <p class="col-12 error" id="lastname-error"></p>
+      <section class="modal-progress">
+<div class="alert">
+<progress value="0" max="100" id="uploader">0%</progress>
+  <p id="messageAlert"></p>
+  <section class="directionRow">
+  <i class="fas fa-times-circle" id="closeModal"></i>
+  <i class="fas fa-check" id="deleteModal"></i>
+  </section>
+</div>
+</section>
   `;
       getUserData(objComment.userId)
         .then((doc) => {
@@ -78,7 +88,22 @@ export const itemComment = (objComment, idPost) => {
       const comentRemove = coments.querySelector('#delete-comment');
       comentRemove.addEventListener('click', () => {
         if (userId === objComment.userId) {
-          removeComment(idPost, objComment.id);
+          const enterModal = coments.querySelector('.modal-progress');
+          const textModal = coments.querySelector('#messageAlert');
+          const deletePublication = coments.querySelector('#deleteModal');
+          const directionRow = coments.querySelector('.directionRow');
+          enterModal.classList.add('showModal');
+          deletePublication.style.display = 'block';
+          directionRow.style.display = 'flex';
+          textModal.textContent = '¿Estas seguro que deseas eliminar el comentario?';
+          const closeModal = coments.querySelector('#closeModal');
+          closeModal.addEventListener('click', () => {
+            enterModal.classList.remove('showModal');
+          });
+          deletePublication.addEventListener('click', () => {
+            removeComment(idPost, objComment.id);
+            enterModal.classList.remove('showModal');
+          });
         } else {
           coments.querySelector('#lastname-error').innerHTML = 'No puedes borrar un comentario de otro usuario';
           setTimeout(() => {
