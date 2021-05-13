@@ -128,7 +128,7 @@ form.sign-up-form {
   background-color: #e67ea8;
   border: none;
   outline: none;
-  height: 49px;
+  height: 30px;
   border-radius: 49px;
   color: #fff;
   text-transform: uppercase;
@@ -229,6 +229,7 @@ form.sign-up-form {
 }
 #logoR{
   width: 30%;
+  margin-top: 41px;
 }
 
 /* ANIMACION */
@@ -388,6 +389,9 @@ form.sign-up-form {
 }
 
 @media (max-width: 570px) {
+  .signin-signup{
+    top:87%
+  }
   .logo{
   width: 52%;
 }
@@ -418,7 +422,7 @@ form.sign-up-form {
   }
 
   .container:before {
-    bottom: 68%;
+    bottom: 72%;
     left: 50%;
   }
 
@@ -429,6 +433,5 @@ form.sign-up-form {
   .input-field input{
     font-size: 0.7rem;
   }
-  
 }
 }
