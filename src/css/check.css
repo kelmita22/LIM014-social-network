@@ -64,6 +64,10 @@ label {
   display: flex;
     justify-content: center;
 }
+.btn.transparent:hover{
+background-color:  #eeacc6;
+
+}
 @media(min-width: 408px) and  (max-width: 1000px){
 .formRegister {
   padding: 10px;

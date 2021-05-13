@@ -177,9 +177,10 @@ main.home-section {
   margin-right: 0.4rem; 
 }
 
-.fa-sign-out-alt:before,.fa-user-circle:before,.fa-home:before,.fa-file-image:before{
+.fa-sign-out-alt:before,.fa-user-circle:before,.fa-home:before,.fa-file-image:before, .fa-edit:before{
   color:#e67ea8;
 }
+
 .title-header {
   width: 34%; 
   text-align: center;
@@ -207,10 +208,6 @@ main.home-section {
     grid-template-columns: 30% 50%;
     grid-gap: 49px;
 }
-/*.profile-section{
-  grid-area: profile;
-}*/
-
 .avatar{
   width: 100px;
   height: 100px;
@@ -355,25 +352,15 @@ main.home-section {
   transition: 600ms ease all;
   transform: scale(0);
 }
-/*progress send photo*/
-.progress{
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  justify-content: center;
-}
 .modal-progress{
   z-index: 9;
   background: rgba(252, 252, 252, 0.5);
 }
 #uploader{
+  display: none;
   -webkit-appearance: none;
   appearance: none;
-  width: 50%;
+  width: 80%;
 }
 #uploader[value]::-webkit-progress-bar {
   background-color: #eee;
@@ -394,14 +381,6 @@ main.home-section {
   
 border-radius: 2px; 
 background-size: 35px 20px, 100% 100%, 100% 100%;
-}
-#messageProgress{
-  background: #3b99f7;
-  color: white;
-  border-radius: 50px;
-  padding: 5px;
-  margin-top: 20px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
 }
 .showModal{
   opacity: 1;
