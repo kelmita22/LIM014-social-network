@@ -20,9 +20,13 @@ export const signUp = (email, password) => {
 };
 // Enviar correo para verificación
 export const emailVerification = () => {
+  const direction = {
+    url: 'http://localhost:5000/',
+  };
   const user = firebase.auth().currentUser;
-  return user.sendEmailVerification();
+  return user.sendEmailVerification(direction);
 };
+
 // Función para cerrar sesión
 export const signOut = () => firebase.auth().signOut();
 
