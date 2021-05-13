@@ -1,8 +1,0 @@
-/* propiedades universales, le indicamos al navegador que maantenga el ancho y alto sin
- importar el relleno y la fuente para la interfaz*/
- * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
-}
