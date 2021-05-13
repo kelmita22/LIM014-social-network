@@ -1,5 +1,13 @@
-// Este es el punto de entrada de tu aplicacion
+import { changeView } from './controller/route.js';
+import configurationKeys from './js/configurationKeys.js';
 
-import { myFunction } from './lib/index.js';
+const init = () => {
+  configurationKeys();
+  changeView(window.location.hash);
+  window.addEventListener('hashchange', () => changeView(window.location.hash));
+};
 
-myFunction();
+window.addEventListener('load', init);
+/*
+window.onload = () => {
+}; */
