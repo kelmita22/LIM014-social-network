@@ -167,3 +167,27 @@ background-color: #e67ea8;
 color: white;
 border-radius: 50px;
 }
+#ocultMessage{
+  display: flex;
+  justify-content: space-evenly;
+}
+#name-error, #error{
+display: none;
+
+}
+.col-10{
+  color: red;
+  
+}
+.btnDeleteComm{
+  height: 2rem;
+  width: 18%;
+  font-weight: 600;
+  color: #fff;
+  background-color: #e67ea8;
+  border-style: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  outline: none;
+  transition: all ease 0.5s;
+}
