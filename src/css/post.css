@@ -292,3 +292,8 @@ object-fit: cover;
       width: 100%;
     }
   } 
+  .btnDeleteComm:hover{
+    color: white;
+    font-weight: 800;
+    background-color: #3b99f7;
+  }
