@@ -48,12 +48,9 @@ export const itemPost = (objPost) => {
     <img id="post-img" class="post-img" src='${objPost.urlimg}'/>
     <div class="like-comment-container">
     <section id="reactions">
-      <p id="likes" class="${(reactionCounter === 0) ? 'hide' : 'count-like'}" > ${reactionCounter} reactions
-      </p>
-      <p id = "count-comment" class="${(reactionCounter === 0) ? 'count-comment' : 'count-comment-right'}"></p>     
-      <hr>
+     
       </section>
-      <button type="button" id="btn-like" class="btn-like-plane ${(objPost.likes.indexOf(userId) === -1) ? 'inactive-reaction' : 'active-reaction'}"><i class="fa fa-thumbs-up"></i> Like </button>
+      <button type="button" id="btn-like" class=""><i class="fa fa-thumbs-up"></i> Like </button>
       <button type="button" id="btn-comment" class="btn-comment"><i class="fa fa-comment"></i>Comment </button>
     </div>
     <section id ="container-comment" class="hide">
@@ -76,6 +73,17 @@ export const itemPost = (objPost) => {
 </div>
 </section>
 `;
+
+      // Logica de reacciones y comentarios
+      const reactions = postElement.querySelector('#reactions');
+      if (reactionCounter === 0) {
+        reactions.innerHTML = `
+        <p id = "count-comment" class="count-comment"></p>`;
+      } else {
+        reactions.innerHTML = ` 
+        <p id="likes" class="count-like" > ${reactionCounter} likes </p>
+        <p id = "count-comment" class="count-comment-right"></p>`;
+      }
       getUserData(objPost.userId)
         .then((doc) => {
           const avatarPhoto = postElement.querySelector('.avatar-post');
@@ -152,7 +160,7 @@ export const itemPost = (objPost) => {
             enterModal.classList.add('showModal');
             deletePublication.style.display = 'block';
             directionRow.style.display = 'flex';
-            textModal.textContent = '¿Estas seguro que deseas eliminar el post?';
+            textModal.textContent = '¡Estas seguro que deseas eliminar el post?';
             const closeModal = postElement.querySelector('#closeModal');
             closeModal.addEventListener('click', () => {
               enterModal.classList.remove('showModal');
@@ -184,6 +192,13 @@ export const itemPost = (objPost) => {
           upgradeLike(objPost.id, objPost.likes);
         }
       });
+
+      if (objPost.likes.indexOf(userId) === -1) {
+        likes.className = 'btn-like-plane inactive-reaction';
+      } else {
+        likes.className = 'btn-like-plane active-reaction';
+      }
+
       /* ------------Mostrar y ocultar comentario ------------------*/
       postElement.querySelector('#btn-comment').addEventListener('click', () => {
         postElement.querySelector('#btn-comment').classList.toggle('btn-comment-active');
