@@ -59,7 +59,7 @@ main > div,.allpost{
 .name .tooltiptext::after,
 .btn-like .tooltiptext::after,
 .count-like .tooltiptext::after {
-  content: "";
+  /* content: ""; */
   position: absolute;
   top: 100%;
   left: 50%;
@@ -139,11 +139,13 @@ object-fit: cover;
   background-color: #dfe5e8;
   color: #666; 
 }
-.btn-like-plane:hover, .active-reaction {
+
+.btnDeleteComm:hover{
   color: white;
   font-weight: 800;
   background-color: #3b99f7;
 }
+
 .btn-post i,
 .btn-comment i{
   margin-right: 0.3rem;
