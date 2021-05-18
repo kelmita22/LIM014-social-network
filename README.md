@@ -72,7 +72,7 @@ Se realizo un test a 5 personas sobre la usabilidad de la red social y su diseñ
 
 ### 6. Prototipo Final:
 Usuario de prueba: nunezandreina990@gmail.com
-Clave de prueba: 123456Eak
+Clave de prueba: 123456
 
 #### Mobile
 
