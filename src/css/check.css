@@ -68,6 +68,14 @@ label {
 background-color:  #eeacc6;
 
 }
+@media (max-width: 1500px) and (min-width: 768px){
+#loginForm{
+    margin-bottom: 20%;
+}
+#loginCheck{
+  margin-bottom: 11%;
+}
+}
 @media(min-width: 408px) and  (max-width: 1000px){
 .formRegister {
   padding: 10px;

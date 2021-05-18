@@ -8,7 +8,7 @@ export default () => {
   viewCheck.innerHTML = `
   <section class="forms-container">
     <section class="signin-signup" id="signin">
-      <form action="#" class="sign-in-form">
+      <form action="#" class="sign-in-form" id="loginCheck">
         <img src="imageProject/iconWartay.png" id="logoR" class="logo" alt="" />
         <section class="formRegister">
  <div>
