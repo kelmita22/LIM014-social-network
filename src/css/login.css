@@ -203,7 +203,7 @@ form.sign-up-form {
   color: white;
 }
 
-.btn.transparent {
+.transparent {
   margin: 0;
   background: none;
   border: 2px solid #fff;
@@ -211,6 +211,9 @@ form.sign-up-form {
   height: 41px;
   font-weight: 600;
   font-size: 0.8rem;
+}
+.transparent:hover{
+  background: #e67ea8;
 }
 
 .cuadro{
@@ -226,10 +229,6 @@ form.sign-up-form {
 
 #registro{
   margin-top: 35%;
-}
-#logoR{
-  width: 30%;
-  margin-top: 41px;
 }
 
 /* ANIMACION */
@@ -326,7 +325,7 @@ form.sign-up-form {
     padding: 0.5rem 0;
   }
 
-  .btn.transparent {
+  .transparent {
     width: 110px;
     height: 35px;
     font-size: 0.7rem;
