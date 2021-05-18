@@ -68,7 +68,7 @@ label {
 background-color:  #eeacc6;
 
 }
-@media (max-width: 1500px) and (min-width: 768px){
+@media (min-width: 600px) and (max-width: 1023px){
 #loginForm{
     margin-bottom: 20%;
 }
