@@ -1,6 +1,6 @@
 /* propiedades universales, le indicamos al navegador que maantenga el ancho y alto sin
  importar el relleno y la fuente para la interfaz*/
- * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -43,7 +43,7 @@ header {
 main.home-section {
   margin-top: 2%;
 }
-.container-home{
+.container-home {
   background-color: whitesmoke;
   /*width: 90%;
   margin: 20px auto;
@@ -52,37 +52,37 @@ main.home-section {
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "profile home aside";*/
 }
-.container-home p{
+.container-home p {
   margin: 0.5rem 0.5rem;
 }
 .main-header {
   position: sticky;
   top: 0;
   width: 100%;
-  display: flex; 
+  display: flex;
   background: #3b99f7;
-  color: white; 
+  color: white;
   z-index: 2;
-  border: none; 
+  border: none;
 }
 .main-header nav {
   width: 100%;
-  display: flex; 
+  display: flex;
 }
-.profile-section i{
+.profile-section i {
   margin-right: 1rem;
   color: #444;
 }
-.profile-section h2{
+.profile-section h2 {
   font-size: 1.2rem;
   text-align: center;
 }
 .profile,
-.aboutUs{
+.aboutUs {
   position: sticky;
   top: 90px;
 }
-.profile a{
+.profile a {
   text-decoration: none;
   font-weight: 600;
   display: flex;
@@ -91,20 +91,20 @@ main.home-section {
   color: white;
 }
 .menu-header {
-  width: 100%; 
-  display: flex; 
+  width: 100%;
+  display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   align-items: center;
-  list-style: none; 
+  list-style: none;
   font-size: 1.35rem;
 }
 .menu-header a {
-  display: flex; 
-  width: 100%; 
+  display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
-  color: white; 
+  color: white;
   padding: 1rem;
   text-decoration: none;
 }
@@ -123,15 +123,15 @@ main.home-section {
   color: white;
   margin-left: 10px;
 }
-.logOut{
-  margin-right: 4px; 
+.logOut {
+  margin-right: 4px;
 }
 .btn-post i,
-.btn-comment i{
+.btn-comment i {
   margin-right: 0.3rem;
 }
 .btn-post,
-.btn-comment{
+.btn-comment {
   height: 2rem;
   width: 30%;
   font-weight: 600;
@@ -143,45 +143,48 @@ main.home-section {
   outline: none;
   transition: all ease 0.5s;
 }
-.btn-post{
+.btn-post {
   width: 20% !important;
   margin-left: 60%;
 }
 .btn-post:hover,
 .btn-comment:hover,
-.btn-comment-active{
+.btn-comment-active {
   background-color: #3b99f7;
   color: white;
   font-weight: 800;
 }
-.logo-aside{
-  color: #2CAB92 ;
+.logo-aside {
+  color: #2cab92;
   font-weight: 800;
   font-size: 20px;
 }
-.logo-aside i{
-  color: #2CAB92;
+.logo-aside i {
+  color: #2cab92;
   margin: 0;
 }
 .home-header i {
-  margin-left: 1rem; 
+  margin-left: 1rem;
 }
 #left-menu-header {
   width: 33%;
   display: flex;
-  flex-flow: row nowrap; 
+  flex-flow: row nowrap;
   align-items: center;
 }
 #left-menu-header i {
-  font-size: 20px; 
-  margin-right: 0.4rem; 
+  font-size: 20px;
+  margin-right: 0.4rem;
 }
 
-.fa-sign-out-alt:before,.fa-user-circle:before,.fa-home:before,.fa-file-image:before{
-  color:#e67ea8;
+.fa-sign-out-alt:before,
+.fa-user-circle:before,
+.fa-home:before,
+.fa-file-image:before {
+  color: #e67ea8;
 }
 .title-header {
-  width: 34%; 
+  width: 34%;
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
@@ -189,29 +192,29 @@ main.home-section {
 #log-out-header {
   cursor: pointer;
   width: 33%;
-  display: flex; 
+  display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 2rem 0 0; 
+  padding: 0 2rem 0 0;
 }
 #hamburger-menu {
   display: none;
-  position: absolute; 
-  top: 1.7rem; 
-  font-size: 1.8rem; 
+  position: absolute;
+  top: 1.7rem;
+  font-size: 1.8rem;
   left: 2rem;
-  cursor: pointer; 
+  cursor: pointer;
 }
-#prueba{
+#prueba {
   display: grid;
-    grid-template-columns: 30% 50%;
-    grid-gap: 49px;
+  grid-template-columns: 30% 50%;
+  grid-gap: 49px;
 }
 /*.profile-section{
   grid-area: profile;
 }*/
 
-.avatar{
+.avatar {
   width: 100px;
   height: 100px;
   margin: 0.5rem auto;
@@ -219,12 +222,12 @@ main.home-section {
   border-radius: 50%;
   object-fit: cover;
 }
-.name .tooltiptext{
+.name .tooltiptext {
   font-size: 12px;
   visibility: hidden;
   background-color: #fff;
-  border: 2px solid #2CAB92;
-  color:  #444;
+  border: 2px solid #2cab92;
+  color: #444;
   text-align: center;
   border-radius: 6px;
   padding: 0.5rem;
@@ -240,7 +243,7 @@ main.home-section {
 .name .tooltiptext::after,
 .btn-like .tooltiptext::after,
 .count-like .tooltiptext::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -252,10 +255,12 @@ main.home-section {
 /*.home-section{
   grid-area: home;
 }*/
-.user, .user-post{
+.user,
+.user-post {
   display: flex;
 }
-.avatar-post, .avatar-comment{
+.avatar-post,
+.avatar-comment {
   width: 40px;
   height: 40px;
   border-radius: 49px;
@@ -263,7 +268,7 @@ main.home-section {
 }
 .content-newpost textarea,
 .edit-text-post textarea,
-.edit-comment-text-btns textarea{
+.edit-comment-text-btns textarea {
   height: 70px;
   text-align: justify;
   width: 100%;
@@ -276,49 +281,49 @@ main.home-section {
 }
 .content-newpost textarea:focus,
 .edit-text-post textarea:focus,
-.edit-comment-text-btns textarea:focus{
-  border-color: #C4C4C4;
+.edit-comment-text-btns textarea:focus {
+  border-color: #c4c4c4;
   background: white;
 }
-.content-newpost textarea::placeholder{
-  color : rgba(77, 167, 198, 0,2);
+.content-newpost textarea::placeholder {
+  color: rgba(77, 167, 198, 0, 2);
 }
-.content-newpost textarea:focus::placeholder{
-  color: #C4C4C4;
+.content-newpost textarea:focus::placeholder {
+  color: #c4c4c4;
 }
-#remove-img{
+#remove-img {
   color: #444;
   display: flex;
   justify-content: center;
   cursor: pointer;
 }
-#remove-img:hover{
+#remove-img:hover {
   color: red;
 }
-.post-img{
+.post-img {
   width: 50%;
   display: block;
   margin: 0.3rem auto 1rem;
 }
-.buttons-bar{
+.buttons-bar {
   position: relative;
 }
-.buttons-bar .fa-file-image{
+.buttons-bar .fa-file-image {
   font-size: 1.35rem;
   cursor: pointer;
   margin-right: 1rem;
 }
-.upload-img{
+.upload-img {
   display: none;
 }
 .fa-file-image .tooltiptext,
 .fa-github .tooltiptext,
 .fa-edit .tooltiptext,
 .btn-like .tooltiptext,
-.count-like .tooltiptext{
+.count-like .tooltiptext {
   font-size: 12px;
   visibility: hidden;
-  background-color:  #444;
+  background-color: #444;
   color: #fff;
   text-align: center;
   border-radius: 6px;
@@ -330,21 +335,22 @@ main.home-section {
   margin-left: -60px;
 }
 
-.count-like .tooltiptext{
+.count-like .tooltiptext {
   left: 50%;
 }
-.tooltiptext .like{
+.tooltiptext .like {
   color: #3dbee9;
 }
-.tooltiptext .plane{
+.tooltiptext .plane {
   color: rgba(44, 171, 146, 0.7);
 }
 
-.modal-container, .modal-progress{
+.modal-container,
+.modal-progress {
   position: fixed;
   width: 100%;
   height: 100vh;
-  top:0;
+  top: 0;
   left: 0;
   display: flex;
   justify-content: center;
@@ -357,7 +363,7 @@ main.home-section {
   background: rgba(219, 175, 175, 0.5);
 }
 /*progress send photo*/
-.progress{
+.progress {
   width: 100%;
   height: auto;
   overflow: hidden;
@@ -389,11 +395,11 @@ main.home-section {
     #69a6ce,
     #9b59b6
   );
-  
-border-radius: 2px; 
-background-size: 35px 20px, 100% 100%, 100% 100%;
+
+  border-radius: 2px;
+  background-size: 35px 20px, 100% 100%, 100% 100%;
 }
-#messageProgress{
+#messageProgress {
   background: #3b99f7;
   color: white;
   border-radius: 50px;
@@ -401,18 +407,18 @@ background-size: 35px 20px, 100% 100%, 100% 100%;
   margin-top: 20px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
 }
-.showModal{
+.showModal {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
 }
-.img-aside{
+.img-aside {
   width: 100%;
-  border: 2px solid #2CAB92;
+  border: 2px solid #2cab92;
 }
-.right-section{
+.right-section {
   grid-area: aside;
-  text-align: center
+  text-align: center;
 }
 
 @media (min-width: 320px) and (max-width: 425px){

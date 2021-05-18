@@ -1,22 +1,22 @@
-.logoDestokp {
+/* .logoDestokp {
   display: flex;
   width: 48%;
-}
+} */
 
 /*CONTENEDOR GENERAL*/
-.container-check {
+/* .container-check {
   display: flex;
   justify-content: space-evenly;
-}
+}  */
 
 /*CONTENEDOR FORMULARIO*/
-#containTwo {
+/* #containTwo {
   display: flex;
   justify-content: center;
-}
+} */
 
 /*INPUTS*/
-.formRegister {
+.formRegister { 
   width: 400px;
   border-style: solid;
   border-radius: 30px;
@@ -24,7 +24,10 @@
   padding: 30px;
   margin-top: 10px;
 }
-
+#logoR{
+  width: 30%;
+  margin-top: 41px;
+}
 .controls {
   width: 100%;
   background: #e6e6e6;
@@ -53,9 +56,9 @@ h4 {
   margin-bottom: 10px;
 }
 
-.linea {
+/* .linea {
   margin-bottom: 10px;
-}
+} */
 
 label {
   color: #4e4187;
@@ -64,9 +67,17 @@ label {
   display: flex;
     justify-content: center;
 }
-.btn.transparent:hover{
+.btn .transparent:hover{
 background-color:  #eeacc6;
 
+}
+@media (min-width: 600px) and (max-width: 1023px){
+#loginForm{
+    margin-bottom: 20%;
+}
+#loginCheck{
+  margin-bottom: 11%;
+}
 }
 @media(min-width: 408px) and  (max-width: 1000px){
 .formRegister {

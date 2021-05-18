@@ -20,11 +20,11 @@ export const signUp = (email, password) => {
 };
 // Enviar correo para verificación
 export const emailVerification = () => {
-  const direction = {
-    url: 'https://kelmita22.github.io/LIM014-social-network/index.html#',
-  };
+  /* const direction = {
+    url: 'https://erikagonza25.github.io/LIM014-social-network/',
+  }; */
   const user = firebase.auth().currentUser;
-  return user.sendEmailVerification(direction);
+  return user.sendEmailVerification();
 };
 
 // Función para cerrar sesión

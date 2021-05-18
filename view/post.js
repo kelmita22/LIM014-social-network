@@ -160,7 +160,7 @@ export const itemPost = (objPost) => {
             enterModal.classList.add('showModal');
             deletePublication.style.display = 'block';
             directionRow.style.display = 'flex';
-            textModal.textContent = 'Estas seguro que deseas eliminar el post?';
+            textModal.textContent = '¿Estás seguro que deseas eliminar el post?';
             const closeModal = postElement.querySelector('#closeModal');
             closeModal.addEventListener('click', () => {
               enterModal.classList.remove('showModal');
