@@ -1,6 +1,4 @@
-import {
-  postAdd, getPost,
-} from '../js/firestore.js';
+import { postAdd, getPost } from '../js/firestore.js';
 import { imgStorage } from '../js/storage.js';
 import { itemPost } from './post.js';
 import { signOut, currentUser } from '../js/auth.js';
@@ -57,6 +55,11 @@ export default (dataCurrentUser) => {
       </div>
     </div>
     <section id="container-post"></section>
+    <section class="bottonScroll">
+    <section class="pressButton">
+      <p><img src="./imageProject/flechas.png" alt=""></p>
+    </section>
+  </section>
     </section>
   </main>
   <section class="modal-progress">
@@ -110,7 +113,8 @@ export default (dataCurrentUser) => {
         e.preventDefault();
         imagePost.src = '';
         imageDelete.style.display = 'none';
-        const fileImage = e.target.closest('#form-post').querySelector('input').files[0];
+        const fileImage = e.target.closest('#form-post').querySelector('input')
+          .files[0];
         const load = viewHome.querySelector('#uploader');
         const postText = viewHome.querySelector('.text-newpost');
         const enterModal = viewHome.querySelector('.modal-progress');
@@ -118,32 +122,46 @@ export default (dataCurrentUser) => {
 
         if (fileImage) {
           const uploadTask = imgStorage(fileImage, 'SN-imgPost');
-          uploadTask.on('state_changed', (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            enterModal.classList.add('showModal');
-            viewHome.querySelector('#closeModal').style.display = 'none';
-            viewHome.querySelector('#uploader').style.display = 'block';
-            textModal.textContent = 'Tu publicación fue completada exitosamente';
-            load.value = progress;
-          },
-          () => {
-          }, () => {
-            uploadTask.snapshot.ref.getDownloadURL()
-              .then((downloadURL) => {
-                postAdd(user.uid, postText.value, downloadURL)
-                  .then(() => {
-                    enterModal.classList.remove('showModal');
-                    savePost.reset();
-                  });
+          uploadTask.on(
+            'state_changed',
+            (snapshot) => {
+              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              enterModal.classList.add('showModal');
+              viewHome.querySelector('#closeModal').style.display = 'none';
+              viewHome.querySelector('#uploader').style.display = 'block';
+              textModal.textContent = 'Tu publicación fue completada exitosamente';
+              load.value = progress;
+            },
+            () => {},
+            () => {
+              uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                postAdd(user.uid, postText.value, downloadURL).then(() => {
+                  enterModal.classList.remove('showModal');
+                  savePost.reset();
+                });
               });
-          });
+            },
+          );
         } else {
-          postAdd(user.uid, postText.value, '')
-            .then(() => {
-              enterModal.classList.remove('showModal');
-              savePost.reset();
-            });
+          postAdd(user.uid, postText.value, '').then(() => {
+            enterModal.classList.remove('showModal');
+            savePost.reset();
+          });
         }
+      });
+      // Función para crear un boton que lleve al inicio de pagina
+      window.onscroll = function scroll() {
+        if (document.documentElement.scrollTop > 200) {
+          document.querySelector('.bottonScroll').classList.add('show');
+        } else {
+          document.querySelector('.bottonScroll').classList.remove('show');
+        }
+      };
+      document.querySelector('.bottonScroll').addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
       });
       /* -------------------------- agregar post----------------------*/
       const boxPost = viewHome.querySelector('#container-post');
