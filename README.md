@@ -18,6 +18,10 @@ Referido a estudiantes como espacios de información y comunicación, las redes 
 
 ### 2. Planteamiento del problema
 
+La pandemia del COVID-19 nos ha llevado a enfrentar desafíos enormes en muchos sectores de nuestra población ; indudablemente, uno de los sectores más afectados es La Educación.
+La cuarentena impuesta por el gobierno hace que hoy, muchos niños en especial de comunidades rurales, ya no puedan asistir presencialmente a las aulas. 
+La experiencia docente ha tenido que migrar de las aulas presenciales a coexistir en plataformas digitales no adecuadas para uso educativo, es por ello que nos han pedido el desarrollo de una plataforma educativa que permita mantener una relación más cercanas con el estudiantado. Es así como nace Wartay, una plataforma educativa dirigida a profesores y alumnos del nivel primario con la supervisión de sus padres y/o representantes, en la cual pueden compartir información en diversas áreas de estudio, hacer seguimiento de las evaluaciones y presentaciones escolares.
+
 ### 3. Resumen del proyecto
 
 Construir una Red Social en la que cualquier usuario pueda crear una cuenta de acceso y loguearse con ella; así como crear, editar, borrar y "likear" publicaciones.
